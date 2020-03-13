@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="cub3d"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/ybouddou/Desktop/cub3d/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ybouddou/Desktop/cub3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ybouddou/Desktop/cub3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ybouddou/Desktop/cub3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ybouddou/Desktop/cub3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/ybouddou/Desktop/cub3d/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ybouddou/Desktop/cub3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ybouddou/Desktop/cub3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ybouddou/Desktop/cub3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ybouddou/Desktop/cub3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/ybouddou/Desktop/cub3d/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ybouddou/Desktop/cub3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ybouddou/Desktop/cub3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ybouddou/Desktop/cub3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ybouddou/Desktop/cub3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cub3d">
+				<Option output="/Users/ybouddou/Desktop/cub3d/cmake-build-debug/cub3d" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ybouddou/Desktop/cub3d/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/ybouddou/Desktop/cub3d/."/>
+					<Add directory="/Users/ybouddou/Desktop/cub3d/Libft"/>
+					<Add directory="/Users/ybouddou/Desktop/cub3d/mlx"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ybouddou/Desktop/cub3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 cub3d"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ybouddou/Desktop/cub3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ybouddou/Desktop/cub3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ybouddou/Desktop/cub3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cub3d/fast">
+				<Option output="/Users/ybouddou/Desktop/cub3d/cmake-build-debug/cub3d" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ybouddou/Desktop/cub3d/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/ybouddou/Desktop/cub3d/."/>
+					<Add directory="/Users/ybouddou/Desktop/cub3d/Libft"/>
+					<Add directory="/Users/ybouddou/Desktop/cub3d/mlx"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ybouddou/Desktop/cub3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 cub3d/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ybouddou/Desktop/cub3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ybouddou/Desktop/cub3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ybouddou/Desktop/cub3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_atoi.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_bzero.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_calloc.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_isalnum.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_isalpha.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_isascii.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_isdigit.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_isprint.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_itoa.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_lstadd_back_bonus.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_lstadd_front_bonus.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_lstclear_bonus.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_lstclear_bonus_prog.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_lstdelone_bonus.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_lstiter_bonus.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_lstiter_bonus_prog.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_lstlast_bonus.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_lstmap_bonus.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_lstmap_bonus_prog.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_lstnew_bonus.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_lstsize_bonus.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_memccpy.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_memchr.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_memcmp.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_memcpy.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_memmove.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_memset.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_putchar_fd.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_putendl_fd.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_putnbr_fd.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_putstr_fd.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_split.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_strchr.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_strdup.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_strjoin.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_strlcat.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_strlcpy.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_strlen.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_strmapi.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_strncmp.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_strnstr.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_strrchr.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_strtrim.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_substr.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_tolower.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/ft_toupper.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/libft.h">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/Libft/main.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/cub3d.h">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/func.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/get_next_line.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/get_next_line.h">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/get_next_line_utils.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/img.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/libft.h">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/main.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/mlx/font.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/mlx/mlx.h">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/mlx/mlx_init_loop.m">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/mlx/mlx_int.h">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/mlx/mlx_int_str_to_wordtab.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/mlx/mlx_mouse.m">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/mlx/mlx_new_image.m">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/mlx/mlx_new_window.h">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/mlx/mlx_new_window.m">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/mlx/mlx_opengl.h">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/mlx/mlx_opengl.m">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/mlx/mlx_png.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/mlx/mlx_png.h">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/mlx/mlx_rgb.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/mlx/mlx_shaders.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/mlx/mlx_xpm.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ybouddou/Desktop/cub3d/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
