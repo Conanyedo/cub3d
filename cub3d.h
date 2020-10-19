@@ -6,14 +6,14 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:47:27 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/10/16 12:24:21 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/10/19 20:14:49 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "mlx/mlx_png.h"
 #include <math.h>
-#include "get_next_line.h"
+#include "gnl/get_next_line.h"
 #include "libft.h"
 #include <fcntl.h>
 #include <stdio.h>
@@ -104,6 +104,7 @@ typedef struct		s_cub3d
     t_parse parse;
     t_img   img;
     t_fd    fd;
+    t_img   txt[5];
 
     int     keyboard[300];
     
@@ -137,13 +138,18 @@ typedef struct		s_cub3d
     int     lineHeight;
 	int     drawStart;
     int     drawEnd;
-    int     change;
-    int     look;
-    t_img   txt[5];
+    int     texWidth;
+    int     texHeight;
+    double  wallX;
+    int     texX;
+    int     texY;
+    double  step;
+    double  texPos;
 }					t_cub3d;
 
 void	init(t_cub3d *cub);
 void    ft_free(char **arr);
+void	freeAll(t_cub3d *cub);
 void	checker(char **s);
 void	range(t_rgb *cub);
 int		key_pressed(int key, t_cub3d *cub);
@@ -167,7 +173,11 @@ void    space(t_cub3d *cub);
 void    zero(t_cub3d *cub);
 void    last_line(t_cub3d *cub);
 void    spawning(t_cub3d *cub);
-void	moves(t_cub3d *cub);
+void	movesUpDown(t_cub3d *cub);
+void    moveSides(t_cub3d *cub);
 void	look(t_cub3d *cub);
 void	calc(t_cub3d *cub);
+void	sideDist(t_cub3d *cub);
 void	hit(t_cub3d *cub);
+void	wall(t_cub3d *cub);
+void	render(t_cub3d *cub);

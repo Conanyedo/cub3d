@@ -2,7 +2,7 @@
 
 R 1920 1080
 
-NO bluestone.png
+NO Wallsnk.png
 
 SO purplestone.png
 
@@ -10,7 +10,7 @@ WE wood.png
 
 EA greystone.png
 
-S bluestone.png
+S ./bluestone.png
 
 F 215,180,120
 C 155,48,79

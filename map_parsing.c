@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 08:33:16 by root              #+#    #+#             */
-/*   Updated: 2020/10/17 18:47:21 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/10/19 12:35:47 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,8 @@ void    spawning(t_cub3d *cub)
         cub->posY = cub->parse.Y;
         cub->dirX = -1;
         cub->dirY = 0;
+        cub->planeX = 0;
+	    cub->planeY = 0.66;
         cub->map[cub->parse.X][cub->parse.Y] = '0';
         cub->parse.spawn = 1;
     }
@@ -186,6 +188,8 @@ void    spawning(t_cub3d *cub)
         cub->posY = cub->parse.Y;
         cub->dirX = 1;
         cub->dirY = 0;
+        cub->planeX = 0;
+	    cub->planeY = -0.66;
         cub->map[cub->parse.X][cub->parse.Y] = '0';
         cub->parse.spawn = 1;
     }
@@ -195,6 +199,8 @@ void    spawning(t_cub3d *cub)
         cub->posY = cub->parse.Y;
         cub->dirX = 0;
         cub->dirY = 1;
+        cub->planeX = 0.66;
+	    cub->planeY = 0;
         cub->map[cub->parse.X][cub->parse.Y] = '0';
         cub->parse.spawn = 1;
     }
@@ -204,6 +210,8 @@ void    spawning(t_cub3d *cub)
         cub->posY = cub->parse.Y;
         cub->dirX = 0;
         cub->dirY = -1;
+        cub->planeX = -0.66;
+	    cub->planeY = 0;
         cub->map[cub->parse.X][cub->parse.Y] = '0';
         cub->parse.spawn = 1;
     }
