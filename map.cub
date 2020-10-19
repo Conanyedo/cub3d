@@ -2,15 +2,15 @@
 
 R 1920 1080
 
-NO Wallsnk.png
+NO texture/Wallsnk.png
 
-SO purplestone.png
+SO texture/purplestone.png
 
-WE wood.png
+WE texture/wood.png
 
-EA greystone.png
+EA texture/greystone.png
 
-S ./bluestone.png
+S texture/bluestone.png
 
 F 215,180,120
 C 155,48,79
