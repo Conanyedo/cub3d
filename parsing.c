@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:01:50 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/10/19 20:10:03 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/10/21 14:44:33 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,14 @@ void	path(char **path, t_parse *parse, int *fd, int *rep)
 {
 	if (*rep == 1)
 		error_msg("Error\nAdditional path found\n");
-		if (parse->line[0] == 'S' && parse->line[1] != 'O' && parse->line[2] == ' ')
-				error_msg("Error\nInvalid indentifier\n");
+	if (parse->line[0] == 'S' && parse->line[1] != 'O' && parse->line[2] == ' ')
+		error_msg("Error\nInvalid indentifier\n");
 	if (parse->line[2] != ' ')
 	{
 		if (parse->line[0] == 'S' && parse->line[1] != 'O')
 		{
 			if (parse->line[1] != ' ')
-				error_msg("Error\nInvalid indentifier\n");	
+				error_msg("Error\nInvalid indentifier\n");
 		}
 		else
 			error_msg("Error\nInvalid indentifier\n");
@@ -101,7 +101,7 @@ void	path(char **path, t_parse *parse, int *fd, int *rep)
 	ft_free(parse->splitted);
 	*fd = open(*path, O_RDONLY);
 	if (*fd == -1)
-		error_msg_free("Error\nPath not found\n", path);
+		error_msg("Error\nPath not found\n");
 	*rep = 1;
 }
 

@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 19:13:25 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/10/19 20:15:37 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/10/22 13:46:50 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 void	draw(t_cub3d *cub)
 {
-	
 	cub->img.img_ptr = mlx_new_image(cub->mlx.p, cub->res.w, cub->res.h);
 	cub->img.img_data = (int *)mlx_get_data_addr(cub->img.img_ptr, &cub->img.bpp, &cub->img.size_line, &cub->img.endian);
-	
 	cub->ray = 0;
 	while (cub->ray < cub->res.w)
 	{
@@ -27,6 +25,8 @@ void	draw(t_cub3d *cub)
 		wall(cub);
 		render(cub);
 	}
+	if (cub->spriteNum)
+		spriteRender(cub);
 	mlx_put_image_to_window(cub->mlx.p, cub->mlx.w, cub->img.img_ptr, 0, 0);
 }
 
@@ -36,7 +36,7 @@ int		deal_key(t_cub3d *cub)
 	movesUpDown(cub);
 	moveSides(cub);
 	look(cub);
-	if(cub->keyboard[53])
+	if (cub->keyboard[53])
 		exit(0);
 	draw(cub);
 	return (0);
@@ -44,21 +44,21 @@ int		deal_key(t_cub3d *cub)
 
 void	texture(t_cub3d *cub)
 {
+	//NO
 	cub->txt[0].img_ptr = mlx_png_file_to_image(cub->mlx.p, cub->path.NO, &cub->txt[0].w, &cub->txt[0].h);
 	cub->txt[0].img_data = (int*)mlx_get_data_addr(cub->txt[0].img_ptr, &cub->txt[0].bpp, &cub->txt[0].size_line, &cub->txt[0].endian);
-	
+	//WE
 	cub->txt[1].img_ptr = mlx_png_file_to_image(cub->mlx.p, cub->path.WE, &cub->txt[1].w, &cub->txt[1].h);
 	cub->txt[1].img_data = (int*)mlx_get_data_addr(cub->txt[1].img_ptr, &cub->txt[1].bpp, &cub->txt[1].size_line, &cub->txt[1].endian);
-	
+	//SO
 	cub->txt[2].img_ptr = mlx_png_file_to_image(cub->mlx.p, cub->path.SO, &cub->txt[2].w, &cub->txt[2].h);
 	cub->txt[2].img_data = (int*)mlx_get_data_addr(cub->txt[2].img_ptr, &cub->txt[2].bpp, &cub->txt[2].size_line, &cub->txt[2].endian);
-	
+	//EA
 	cub->txt[3].img_ptr = mlx_png_file_to_image(cub->mlx.p, cub->path.EA, &cub->txt[3].w, &cub->txt[3].h);
 	cub->txt[3].img_data = (int*)mlx_get_data_addr(cub->txt[3].img_ptr, &cub->txt[3].bpp, &cub->txt[3].size_line, &cub->txt[3].endian);
-	/*
-	cub->txt[4].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, "bluestone.png", &cub->txt[4].w, &cub->txt[4].h);
+	//Sprite
+	cub->txt[4].img_ptr = mlx_png_file_to_image(cub->mlx.p, cub->path.S, &cub->txt[4].w, &cub->txt[4].h);
 	cub->txt[4].img_data = (int*)mlx_get_data_addr(cub->txt[4].img_ptr, &cub->txt[4].bpp, &cub->txt[4].size_line, &cub->txt[4].endian);
-	*/	
 }
 
 void	parsing(t_cub3d *cub)
@@ -71,7 +71,7 @@ void	parsing(t_cub3d *cub)
 			resolution(cub);
 		else if (*cub->parse.line == 'F' || *cub->parse.line == 'C')
 			FC(cub);
-		else if (*cub->parse.line == 'S' || *cub->parse.line == 'N'|| *cub->parse.line == 'W' ||
+		else if (*cub->parse.line == 'S' || *cub->parse.line == 'N' || *cub->parse.line == 'W' ||
 			*cub->parse.line == 'E')
 			identifier(cub);
 		else if (*cub->parse.line == ' ' || *cub->parse.line == '1' || *cub->parse.line == '0' ||
@@ -80,7 +80,10 @@ void	parsing(t_cub3d *cub)
 		else if (*cub->parse.line)
 			freeAll(cub);
 	}
-	map_errors(cub);
+	if (cub->spriteNum)
+		spriteInit(cub);
+	if (cub->parse.mapline)
+		map_errors(cub);
 	exist(cub);
 }
 
@@ -95,9 +98,8 @@ int		main(int ac, char **av)
 		parsing(&cub);
 		printf("posX:%.f | posY:%.f\n",cub.posX, cub.posY);
 		
-		
-		// cub.res.w = 640;
-		// cub.res.h = 360;
+		cub.res.w = 640;
+		cub.res.h = 360;
 		
 		cub.mlx.p = mlx_init();
 		cub.mlx.w = mlx_new_window(cub.mlx.p, cub.res.w, cub.res.h, "cub3d");

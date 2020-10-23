@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:47:27 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/10/19 20:14:49 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/10/22 14:02:48 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "mlx/mlx_png.h"
 #include <math.h>
 #include "gnl/get_next_line.h"
-#include "libft.h"
+#include "Libft/libft.h"
 #include <fcntl.h>
 #include <stdio.h>
 
@@ -93,6 +93,14 @@ typedef struct  s_rgb
     int b;
 }               t_rgb;
 
+typedef struct  s_sprite
+{
+    double  x;
+    double  y;
+    int     texture;
+}               t_sprite;
+
+
 typedef struct		s_cub3d
 {
     t_res   res;
@@ -105,7 +113,8 @@ typedef struct		s_cub3d
     t_img   img;
     t_fd    fd;
     t_img   txt[5];
-
+    t_sprite    *sprite;
+    
     int     keyboard[300];
     
     char    **map;
@@ -145,6 +154,28 @@ typedef struct		s_cub3d
     int     texY;
     double  step;
     double  texPos;
+    //sprite
+    int     spriteNum;
+    int     spriteN;
+    int     spritePos;
+    double  *ZBuffer;
+    int     *spriteOrder;
+    double  *spriteDist;
+    double  spriteX;
+    double  spriteY;
+    double  invDet;
+    double  transformX;
+    double  transformY;
+    int     spriteScreenX;
+    int     spriteHeight;
+    int     spriteWidth;
+    int     drawStartY;
+    int     drawStartX;
+    int     drawEndY;
+    int     drawEndX;
+    int     spriteStripe;
+    int     spriteLine;
+    int     d;
 }					t_cub3d;
 
 void	init(t_cub3d *cub);
@@ -173,6 +204,9 @@ void    space(t_cub3d *cub);
 void    zero(t_cub3d *cub);
 void    last_line(t_cub3d *cub);
 void    spawning(t_cub3d *cub);
+void    spawningNS(t_cub3d *cub);
+void    sprite(t_cub3d *cub, int x);
+void    spriteInit(t_cub3d *cub);
 void	movesUpDown(t_cub3d *cub);
 void    moveSides(t_cub3d *cub);
 void	look(t_cub3d *cub);
@@ -181,3 +215,4 @@ void	sideDist(t_cub3d *cub);
 void	hit(t_cub3d *cub);
 void	wall(t_cub3d *cub);
 void	render(t_cub3d *cub);
+void	spriteRender(t_cub3d *cub);

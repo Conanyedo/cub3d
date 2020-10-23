@@ -6,13 +6,13 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 01:49:26 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/10/19 20:17:56 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/10/21 14:21:32 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init(t_cub3d *cub)//////////over 25////////////
+void			init(t_cub3d *cub)//////////over 25////////////
 {
 	cub->rotateSpeed = 0.03;
 	cub->moveSpeed = 0.15;
@@ -42,18 +42,21 @@ void	init(t_cub3d *cub)//////////over 25////////////
 	cub->rep.C = 0;
 	cub->texHeight = 64;
 	cub->texWidth = 64;
+	cub->spriteNum = 0;
+	cub->spritePos = 0;
+	cub->spriteN = 0;
 }
 
-void	checker(char **s)
+void			checker(char **s)
 {
-	int i;
+	int	i;
 	int	j;
 
-	i = 0;	
+	i = 0;
 	while (s[i])
 	{
 		j = 0;
-        if (s[i][0] == '-')
+		if (s[i][0] == '-')
 			error_msg_free("Error\nNegative number\n", s);
 		while (s[i][j])
 		{
@@ -65,16 +68,17 @@ void	checker(char **s)
 	}
 }
 
-void	range(t_rgb *rgb)
+void			range(t_rgb *rgb)
 {
-	if (rgb->r > 255 || rgb->r < 0 || rgb->g > 255 || rgb->g < 0 || rgb->b > 255 || rgb->b < 0)
+	if (rgb->r > 255 || rgb->r < 0 || rgb->g > 255 || rgb->g < 0 ||
+		rgb->b > 255 || rgb->b < 0)
 	{
 		ft_putstr_fd("Error\nRange is false\n", 2);
-		exit (1);
+		exit(1);
 	}
 }
 
-unsigned long createRGB(t_rgb *rgb)
+unsigned long	createRGB(t_rgb *rgb)
 {
 	return ((rgb->r & 0xff) << 16) + ((rgb->g & 0xff) << 8) + (rgb->b & 0xff);
 }
