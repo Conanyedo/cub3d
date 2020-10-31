@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:47:27 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/10/22 14:02:48 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/10/31 14:48:45 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ typedef struct  s_sprite
 {
     double  x;
     double  y;
-    int     texture;
 }               t_sprite;
 
 
@@ -216,3 +215,6 @@ void	hit(t_cub3d *cub);
 void	wall(t_cub3d *cub);
 void	render(t_cub3d *cub);
 void	spriteRender(t_cub3d *cub);
+int     character(t_cub3d *cub);
+void	spriteSort(t_cub3d *cub);
+void	swap(double *i, double *j);

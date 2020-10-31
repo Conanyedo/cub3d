@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 01:49:26 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/10/21 14:21:32 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/10/26 12:41:02 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void			init(t_cub3d *cub)//////////over 25////////////
 	cub->parse.line = NULL;
 	cub->parse.colors = NULL;
 	cub->parse.splitted = NULL;
-	cub->img.w = -1;
-	cub->img.h = -1;
 	cub->rep.res = 0;
 	cub->rep.NO = 0;
 	cub->rep.SO = 0;

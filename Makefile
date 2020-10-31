@@ -6,7 +6,7 @@
 #    By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 15:10:16 by ybouddou          #+#    #+#              #
-#    Updated: 2020/10/21 13:42:24 by ybouddou         ###   ########.fr        #
+#    Updated: 2020/11/01 00:29:42 by ybouddou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@gcc main.c libft/libft.a $(OBJ) mlx/libmlx.a -lz -framework OpenGL -framework AppKit -I mlx
+	@gcc cub3D.c Libft/libft.a $(OBJ) mlx/libmlx.a -lz -framework OpenGL -framework AppKit -I mlx
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $^ -o $@
@@ -43,4 +43,3 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
-

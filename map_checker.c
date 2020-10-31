@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 13:39:49 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/10/22 14:25:39 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/10/31 14:44:58 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 void    last_line(t_cub3d *cub)
 {
 	cub->parse.Y = 0;
+    while (cub->map[cub->parse.X - 1][cub->parse.Y])
+    {
+        if (cub->map[cub->parse.X - 1][cub->parse.Y] > 'A' && cub->map[cub->parse.X][cub->parse.Y] != '1')
+            error_msg("ERROR\nSpawning position in an invalid place");
+        cub->parse.Y++;
+    }
+    cub->parse.Y = 0;
 	while (cub->map[cub->parse.X][cub->parse.Y])
 	{
 		if (cub->map[cub->parse.X][cub->parse.Y] != ' ' && cub->map[cub->parse.X][cub->parse.Y] != '1')
@@ -40,6 +47,8 @@ void    map_errors(t_cub3d *cub)
 	int i;
 
 	i = -1;
+    if (!cub->parse.spawn)
+        error_msg("ERROR\nSpawning position not found or invalid");
     while (cub->map[--cub->parse.X][0] == '\0')
 		cub->map[cub->parse.X] = NULL;
         last_line(cub);
@@ -57,11 +66,12 @@ void    map_errors(t_cub3d *cub)
 			else if (cub->map[i][cub->parse.Y] == '1')
 				cub->parse.Y++;
 			else if (cub->map[i][cub->parse.Y] == '0' &&
-             (cub->map[i + 1][cub->parse.Y] == ' ' || cub->map[i + 1][cub->parse.Y] == '\0'))
+             (cub->map[i + 1][cub->parse.Y] == ' ' || cub->map[i + 1][cub->parse.Y] == '\0'))  
                 error_msg_free("ERROR\nSpace or empty line beneath 0", cub->map);
             else if (cub->map[i][cub->parse.Y] == '2')
                 sprite(cub, i);
-            cub->parse.Y++;
+            else
+                cub->parse.Y++;
 		}
 	}
 }
