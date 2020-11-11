@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:47:27 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/10/31 14:48:45 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/11 12:52:32 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ typedef struct  s_parse
     char	*line;
 	char	**splitted;
 	char	**colors;
-    int     nline;
     int     X;
     int     Y;
     int     spawn;
@@ -97,6 +96,8 @@ typedef struct  s_sprite
 {
     double  x;
     double  y;
+    double  dist;
+    int     order;
 }               t_sprite;
 
 
@@ -134,8 +135,8 @@ typedef struct		s_cub3d
     double  cameraX;
 	double  rayDirX;
 	double  rayDirY;
-	double  sideDistX;
-	double  sideDistY;
+	double  sidedistX;
+	double  sidedistY;
 	double  deltaDistX;
 	double  deltaDistY;
 	double  perpWallDist;
@@ -156,10 +157,7 @@ typedef struct		s_cub3d
     //sprite
     int     spriteNum;
     int     spriteN;
-    int     spritePos;
     double  *ZBuffer;
-    int     *spriteOrder;
-    double  *spriteDist;
     double  spriteX;
     double  spriteY;
     double  invDet;
@@ -172,49 +170,50 @@ typedef struct		s_cub3d
     int     drawStartX;
     int     drawEndY;
     int     drawEndX;
-    int     spriteStripe;
     int     spriteLine;
     int     d;
 }					t_cub3d;
 
-void	init(t_cub3d *cub);
-void    ft_free(char **arr);
-void	freeAll(t_cub3d *cub);
-void	checker(char **s);
-void	range(t_rgb *cub);
-int		key_pressed(int key, t_cub3d *cub);
-int		key_released(int key, t_cub3d *cub);
-unsigned long createRGB(t_rgb *rgb);
-void	resolution(t_cub3d *cub);
-void	identifier(t_cub3d *cub);
-void	FC(t_cub3d *cub);
-void	sprit(t_cub3d *cub);
-void	map(t_cub3d *cub);
-void	map_checker(t_cub3d *cub);
-void	map_errors(t_cub3d *cub);
-char	**push(t_cub3d *cub);
-void    exist(t_cub3d *cub);
-void    error_msg_free(char *s, char **tofree);
-void    error_msg(char *s);
-void	FC_checker(t_rgb *FC, t_parse *parse, int *rep);
-void	path(char **path, t_parse *parse, int *fd, int *rep);
-void    first_line(t_cub3d *cub);
-void    space(t_cub3d *cub);
-void    zero(t_cub3d *cub);
-void    last_line(t_cub3d *cub);
-void    spawning(t_cub3d *cub);
-void    spawningNS(t_cub3d *cub);
-void    sprite(t_cub3d *cub, int x);
-void    spriteInit(t_cub3d *cub);
-void	movesUpDown(t_cub3d *cub);
-void    moveSides(t_cub3d *cub);
-void	look(t_cub3d *cub);
-void	calc(t_cub3d *cub);
-void	sideDist(t_cub3d *cub);
-void	hit(t_cub3d *cub);
-void	wall(t_cub3d *cub);
-void	render(t_cub3d *cub);
-void	spriteRender(t_cub3d *cub);
-int     character(t_cub3d *cub);
-void	spriteSort(t_cub3d *cub);
-void	swap(double *i, double *j);
+void            init(t_cub3d *cub);
+void            ft_free(char **arr);
+void            checker(char **s, t_cub3d *cub);
+void            range(t_rgb *rgb, t_cub3d *cub);
+int             key_pressed(int key, t_cub3d *cub);
+int             key_released(int key, t_cub3d *cub);
+int             key_close(t_cub3d *cub);
+unsigned long   create_rgb(t_rgb *rgb);
+void            resolution(t_cub3d *cub);
+void            identifier(t_cub3d *cub);
+void            fc(t_cub3d *cub);
+void            sprit(t_cub3d *cub);
+void            map(t_cub3d *cub);
+void            map_checker(t_cub3d *cub);
+void            map_errors(t_cub3d *cub);
+char            **push(t_cub3d *cub);
+void            exist(t_cub3d *cub);
+void            error_msg_free(char *s, t_cub3d *cub);
+void            error_free(char *s, t_cub3d *cub, char **tofree);
+void            error_msg(char *s);
+void            fc_color(t_rgb *fc, t_parse *parse, int *rep, t_cub3d *cub);
+void            fc_checker(t_parse *parse, t_cub3d *cub);
+void            path(char **path, t_cub3d *cub, int *fd, int *rep);
+void            first_line(t_cub3d *cub);
+void            space(t_cub3d *cub);
+void            zero(t_cub3d *cub);
+void            last_line(t_cub3d *cub);
+void            spawning(t_cub3d *cub);
+void            spawningNS(t_cub3d *cub);
+int             character(t_cub3d *cub);
+void            moves_up_down(t_cub3d *cub);
+void            movesides(t_cub3d *cub);
+void            look(t_cub3d *cub);
+void            calc(t_cub3d *cub);
+void            sidedist(t_cub3d *cub);
+void            hit(t_cub3d *cub);
+void            wall(t_cub3d *cub);
+void            rendering(t_cub3d *cub);
+void            spriteposition(t_cub3d *cub, int x);
+void            spritedistance(t_cub3d *cub);
+void            spritesort(t_cub3d *cub);
+void            sprite(t_cub3d *cub);
+void            spriterendering(t_cub3d *cub);

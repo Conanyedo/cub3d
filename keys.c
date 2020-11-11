@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:11:23 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/10/27 11:11:20 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/11 13:17:10 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,38 +24,46 @@ int		key_released(int key, t_cub3d *cub)
 	return (0);
 }
 
-void	movesUpDown(t_cub3d *cub)
+int		key_close(t_cub3d *cub)
+{
+	mlx_clear_window(cub->mlx.p, cub->mlx.w);
+	//system("killall afplay 2& >/dev/null && rm -rf a.out >/dev/null 2>&1");
+	exit(0);
+	return (0);
+}
+
+void	moves_up_down(t_cub3d *cub)
 {
 	if (cub->keyboard[13])
 	{
-		if (cub->map[(int)(cub->posX + cub->dirX * cub->moveSpeed)][(int)(cub->posY)] != '1')
+		if (cub->map[(int)(cub->posX + cub->dirX * cub->moveSpeed)][(int)(cub->posY)] == '0')
 			cub->posX += cub->dirX * cub->moveSpeed;
-		if (cub->map[(int)(cub->posX)][(int)(cub->posY + cub->dirY * cub->moveSpeed)] != '1')
+		if (cub->map[(int)(cub->posX)][(int)(cub->posY + cub->dirY * cub->moveSpeed)] == '0')
 			cub->posY += cub->dirY * cub->moveSpeed;
 	}
 	if (cub->keyboard[1])
 	{
-		if (cub->map[(int)(cub->posX - cub->dirX * cub->moveSpeed)][(int)(cub->posY)] != '1')
+		if (cub->map[(int)(cub->posX - cub->dirX * cub->moveSpeed)][(int)(cub->posY)] == '0')
 			cub->posX -= cub->dirX * cub->moveSpeed;
-		if (cub->map[(int)(cub->posX)][(int)(cub->posY - cub->dirY * cub->moveSpeed)] != '1')
+		if (cub->map[(int)(cub->posX)][(int)(cub->posY - cub->dirY * cub->moveSpeed)] == '0')
 			cub->posY -= cub->dirY * cub->moveSpeed;
 	}
 }
 
-void	moveSides(t_cub3d *cub)
+void	movesides(t_cub3d *cub)
 {
 	if (cub->keyboard[0])
 	{
-		if (cub->map[(int)(cub->posX - cub->planeX * cub->moveSpeed)][(int)(cub->posY)] != '1')
+		if (cub->map[(int)(cub->posX - cub->planeX * cub->moveSpeed)][(int)(cub->posY)] == '0')
 			cub->posX -= cub->planeX * cub->moveSpeed;
-		if (cub->map[(int)(cub->posX)][(int)(cub->posY - cub->planeY * cub->moveSpeed)] != '1')
+		if (cub->map[(int)(cub->posX)][(int)(cub->posY - cub->planeY * cub->moveSpeed)] == '0')
 			cub->posY -= cub->planeY * cub->moveSpeed;
 	}
 	if (cub->keyboard[2])
 	{
-		if (cub->map[(int)(cub->posX + cub->planeX * cub->moveSpeed)][(int)(cub->posY)] != '1')
+		if (cub->map[(int)(cub->posX + cub->planeX * cub->moveSpeed)][(int)(cub->posY)] == '0')
 			cub->posX += cub->planeX * cub->moveSpeed;
-		if (cub->map[(int)(cub->posX)][(int)(cub->posY + cub->planeY * cub->moveSpeed)] != '1')
+		if (cub->map[(int)(cub->posX)][(int)(cub->posY + cub->planeY * cub->moveSpeed)] == '0')
 			cub->posY += cub->planeY * cub->moveSpeed;
 	}
 }

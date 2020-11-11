@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 08:33:16 by root              #+#    #+#             */
-/*   Updated: 2020/10/26 14:27:15 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/10 11:32:45 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	map_checker(t_cub3d *cub)
 {
     if (cub->map[cub->parse.X][0] == '0')
-		error_msg_free("ERROR\nLine starts with 0", cub->map);
+		error_msg_free("ERROR\nLine starts with 0", cub);
 	if (cub->parse.X == 0)
         first_line(cub);
     cub->parse.Y = 1;
@@ -30,7 +30,7 @@ void	map_checker(t_cub3d *cub)
         else if (cub->map[cub->parse.X][cub->parse.Y] == '0')
             zero(cub);
 		else if (!cub->map[cub->parse.X][cub->parse.Y])
-            error_msg_free("ERROR\nInvalid char in map", cub->map);
+            error_msg_free("ERROR\nInvalid char in map", cub);
         else
             cub->parse.Y++;
     }
@@ -57,13 +57,13 @@ void	map(t_cub3d *cub)
             spawning(cub);
 		else if (cub->map[cub->parse.X][cub->parse.Y] == '2' &&
          !cub->map[cub->parse.X][cub->parse.Y + 1])
-            error_msg_free("ERROR\nSprite in an invalid place", cub->map);
+            error_msg_free("ERROR\nSprite in an invalid place", cub);
         else if (cub->map[cub->parse.X][cub->parse.Y] == '2')
             cub->spriteNum++;
         else if (cub->parse.spawn == 1 && character(cub) == 1)
-            error_msg_free("ERROR\nSpawning position repeated or in an invalid place", cub->map);
+            error_msg_free("ERROR\nSpawning position repeated or in an invalid place", cub);
         else if (character(cub) == 0)
-            error_msg_free("ERROR\nInvalid char in the map", cub->map);
+            error_msg_free("ERROR\nInvalid char in the map", cub);
         cub->parse.Y++;
     }
 	cub->parse.X++;
@@ -94,7 +94,7 @@ void    spawning(t_cub3d *cub)
 {
     if (!cub->map[cub->parse.X][cub->parse.Y + 1] || cub->map[cub->parse.X - 1][cub->parse.Y] == ' ' ||
      cub->map[cub->parse.X - 1][cub->parse.Y] == '\0')
-           error_msg("ERROR\nSpawning position in an invalid place");
+           error_msg_free("ERROR\nSpawning position in an invalid place", cub);
     if (cub->map[cub->parse.X][cub->parse.Y] == 'N' || cub->map[cub->parse.X][cub->parse.Y] == 'S')
         spawningNS(cub);
     else if (cub->map[cub->parse.X][cub->parse.Y] == 'E')
@@ -106,6 +106,7 @@ void    spawning(t_cub3d *cub)
         cub->planeX = 0.66;
         cub->planeY = 0;
         cub->parse.spawn = 1;
+        cub->map[cub->parse.X][cub->parse.Y] = '0';
     }
     else if (cub->map[cub->parse.X][cub->parse.Y] == 'W')
     {
@@ -116,6 +117,7 @@ void    spawning(t_cub3d *cub)
         cub->planeX = -0.66;
         cub->planeY = 0;
         cub->parse.spawn = 1;
+        cub->map[cub->parse.X][cub->parse.Y] = '0';
     }
 }
 
@@ -130,6 +132,7 @@ void    spawningNS(t_cub3d *cub)
         cub->planeX = 0;
         cub->planeY = 0.66;
         cub->parse.spawn = 1;
+        cub->map[cub->parse.X][cub->parse.Y] = '0';
     }
     else if (cub->map[cub->parse.X][cub->parse.Y] == 'S')
     {
@@ -140,6 +143,7 @@ void    spawningNS(t_cub3d *cub)
         cub->planeX = 0;
         cub->planeY = -0.66;
         cub->parse.spawn = 1;
+        cub->map[cub->parse.X][cub->parse.Y] = '0';
     }
 }
 

@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:08:52 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/10/21 14:22:50 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/11 10:36:09 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,42 @@
 void	exist(t_cub3d *cub)
 {
 	if (cub->rep.res == 0)
-		error_msg("ERROR\nResolution not found");
+		error_msg_free("ERROR\nResolution not found", cub);
 	else if (cub->rep.NO == 0 || cub->rep.SO == 0 || cub->rep.EA == 0 ||
 		cub->rep.WE == 0 || cub->rep.S == 0)
-		error_msg("ERROR\nPath not found");
+		error_msg_free("ERROR\nPath not found", cub);
 	else if (cub->rep.F == 0)
-		error_msg("ERROR\nF not found");
+		error_msg_free("ERROR\nF not found", cub);
 	else if (cub->rep.C == 0)
-		error_msg("ERROR\nC not found");
+		error_msg_free("ERROR\nC not found", cub);
 	else if (cub->parse.mapline == 0)
-		error_msg("ERROR\nMap not found");
+		error_msg_free("ERROR\nMap not found", cub);
+	free(cub->parse.line);
 }
 
-void	error_msg_free(char *s, char **tofree)
+void	error_msg_free(char *s, t_cub3d *cub)
+{
+	free(cub->parse.line);
+	free(cub->path.NO);
+	free(cub->path.SO);
+	free(cub->path.EA);
+	free(cub->path.WE);
+	free(cub->path.S);
+	if (cub->parse.X > 0)
+		ft_free(cub->map);
+	ft_putstr_fd(s, 2);
+	exit(1);
+}
+
+void	error_free(char *s, t_cub3d *cub, char **tofree)
 {
 	ft_free(tofree);
+	free(cub->parse.line);
+	free(cub->path.NO);
+	free(cub->path.SO);
+	free(cub->path.EA);
+	free(cub->path.WE);
+	free(cub->path.S);
 	ft_putstr_fd(s, 2);
 	exit(1);
 }
@@ -46,18 +67,10 @@ void	ft_free(char **arr)
 
 	i = 0;
 	while (arr[i])
-		free(arr[i++]);
-	free(arr);
-}
-
-void	freeAll(t_cub3d *cub)
-{
-	//ft_free(cub->map);
-	free(cub->path.NO);
-	free(cub->path.SO);
-	free(cub->path.EA);
-	free(cub->path.WE);
-	free(cub->path.S);
-	ft_putstr_fd("Error\nWrong info\n", 2);
-	exit(1);
+	{
+		free(arr[i]);
+		arr[i] = NULL;
+		i++;
+	}
+	arr = NULL;
 }
