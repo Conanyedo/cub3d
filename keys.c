@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:11:23 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/11 13:17:10 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/12 11:21:30 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int		key_released(int key, t_cub3d *cub)
 int		key_close(t_cub3d *cub)
 {
 	mlx_clear_window(cub->mlx.p, cub->mlx.w);
-	//system("killall afplay 2& >/dev/null && rm -rf a.out >/dev/null 2>&1");
+	// system("killall afplay 2& >/dev/null");
+	// system("rm -rf a.out >/dev/null 2>&1");
 	exit(0);
 	return (0);
 }

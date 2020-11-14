@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:01:50 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/11 10:12:38 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/12 10:19:27 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	path(char **path, t_cub3d *cub, int *fd, int *rep)
 	}
 	cub->parse.splitted = ft_split(cub->parse.line, ' ');
 	if (cub->parse.splitted[2])
-		error_free("Error\nIdentifier has more than 2 param\n", cub, cub->parse.splitted);
+		error_free("Error\nInvalid indentifier\n", cub, cub->parse.splitted);
 	*path = ft_strdup(cub->parse.splitted[1]);
 	ft_free(cub->parse.splitted);
 	*fd = open(*path, O_RDONLY);

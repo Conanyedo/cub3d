@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 00:30:45 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/11 14:47:30 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/14 12:32:01 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	draw(t_cub3d *cub)
 	}
 	if (cub->spriteNum)
 		sprite(cub);
+	cub->save = 0;
 	mlx_put_image_to_window(cub->mlx.p, cub->mlx.w, cub->img.img_ptr, 0, 0);
 }
 
@@ -38,16 +39,15 @@ int		deal_key(t_cub3d *cub)
 	movesides(cub);
 	look(cub);
 	if (cub->keyboard[53])
-	{
-		//system("killall afplay 2& >/dev/null && rm -rf a.out >/dev/null 2>&1");
-		exit(0);
-	}
+		key_close(cub);
 	draw(cub);
 	return (0);
 }
 
 void	texture(t_cub3d *cub)
 {
+	cub->mlx.p = mlx_init();
+	cub->mlx.w = mlx_new_window(cub->mlx.p, cub->res.w, cub->res.h, "cub3d");
 	cub->txt[0].img_ptr = mlx_png_file_to_image(cub->mlx.p, cub->path.NO, &cub->txt[0].w, &cub->txt[0].h);
 	cub->txt[0].img_data = (int*)mlx_get_data_addr(cub->txt[0].img_ptr, &cub->txt[0].bpp, &cub->txt[0].size_line, &cub->txt[0].endian);
 	cub->txt[1].img_ptr = mlx_png_file_to_image(cub->mlx.p, cub->path.WE, &cub->txt[1].w, &cub->txt[1].h);
@@ -63,6 +63,8 @@ void	texture(t_cub3d *cub)
 	free(cub->path.EA);
 	free(cub->path.WE);
 	free(cub->path.S);
+	cub->image = (unsigned char *)malloc(cub->res.w * cub->res.h * 3);
+	//system("killall afplay 2&>/dev/null >/dev/null\n afplay -q 1 ./texture/music.mp3&");
 }
 
 void	parsing(t_cub3d *cub)
@@ -86,7 +88,7 @@ void	parsing(t_cub3d *cub)
 	if (cub->spriteNum)
 	{
 		cub->ZBuffer = (double*)malloc((cub->res.w + 1) * sizeof(double));
-		cub->sprite = (t_sprite*)malloc((cub->spriteNum + 1) * sizeof(t_sprite));
+		cub->sprite = malloc((cub->spriteNum + 1) * sizeof(t_sprite));
 	}
 	if (cub->parse.mapline)
 		map_errors(cub);
@@ -100,15 +102,13 @@ int		main(int ac, char **av)
 	if (ac >= 2 && ac <= 3)
 	{
 		cub.fd.lines = open(av[1], O_RDONLY);
+		if (cub.fd.lines < 0)
+			error_msg("Error\nInvalid file");
 		init(&cub);
 		parsing(&cub);
-		//system("killall afplay 2&>/dev/null >/dev/null\n afplay -q 1 ./texture/music.mp3&");
-		cub.res.w = 1280;
-		cub.res.h = 720;
-		cub.mlx.p = mlx_init();
-		cub.mlx.w = mlx_new_window(cub.mlx.p, cub.res.w, cub.res.h, "cub3d");
 		texture(&cub);
 		draw(&cub);
+		bmp(&cub, ac, av);
 		mlx_hook(cub.mlx.w, 2, 0, key_pressed, &cub);
 		mlx_hook(cub.mlx.w, 3, 0, key_released, &cub);
 		mlx_hook(cub.mlx.w, 17, 0, key_close, &cub);
@@ -116,6 +116,6 @@ int		main(int ac, char **av)
 		mlx_loop(cub.mlx.p);
 	}
 	else
-		error_msg("more or less param");
+		error_msg("Error\nInvalid params");
 	return (0);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/09 01:49:26 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/11 10:18:49 by ybouddou         ###   ########.fr       */
+/*   Created: 2020/11/13 13:26:43 by ybouddou          #+#    #+#             */
+/*   Updated: 2020/11/14 12:33:04 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void			init(t_cub3d *cub)
 	cub->texWidth = 64;
 	cub->spriteNum = 0;
 	cub->spriteN = 0;
+	cub->save = 1;
 }
 
 void			checker(char **s, t_cub3d *cub)

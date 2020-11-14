@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 13:37:19 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/11 09:54:42 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/14 12:34:13 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,18 @@ void	spritedistance(t_cub3d *cub)
 void	sprite(t_cub3d *cub)
 {
 	spritedistance(cub);
+	cub->bmp_pos = 0;
 	while (cub->spriteN < cub->spriteNum)
 	{
 		cub->spriteX = cub->sprite[cub->spriteN].x - cub->posX;
 		cub->spriteY = cub->sprite[cub->spriteN].y - cub->posY;
 		cub->invDet = 1.0 / (cub->planeX * cub->dirY - cub->dirX * cub->planeY);
-		cub->transformX = cub->invDet * (cub->dirY * cub->spriteX - cub->dirX * cub->spriteY);
-		cub->transformY = cub->invDet * (-cub->planeY * cub->spriteX + cub->planeX * cub->spriteY);
-		cub->spriteScreenX = (int)((cub->res.w / 2) * (1 + cub->transformX / cub->transformY));
+		cub->transformX = cub->invDet * (cub->dirY * cub->spriteX -
+			cub->dirX * cub->spriteY);
+		cub->transformY = cub->invDet * (-cub->planeY * cub->spriteX +
+			cub->planeX * cub->spriteY);
+		cub->spriteScreenX = (int)((cub->res.w / 2) * (1 + cub->transformX /
+			cub->transformY));
 		cub->spriteHeight = abs((int)(cub->res.h / cub->transformY));
 		cub->drawStartY = -cub->spriteHeight / 2 + cub->res.h / 2;
 		cub->drawStartY = (cub->drawStartY < 0) ? 0 : cub->drawStartY;
@@ -94,17 +98,31 @@ void	spriterendering(t_cub3d *cub)
 {
 	while (cub->drawStartX < cub->drawEndX)
 	{
-		cub->texX = (int)(256 * (cub->drawStartX - (-cub->spriteWidth / 2 + cub->spriteScreenX)) * cub->texWidth / cub->spriteWidth) / 256;
-		if (cub->transformY > 0 && cub->drawStartX > 0 && cub->drawStartX < cub->res.w &&
-			cub->transformY < cub->ZBuffer[cub->drawStartX])
+		cub->bmp_pos = 0;
+		cub->texX = (int)(256 * (cub->drawStartX - (-cub->spriteWidth / 2 +
+			cub->spriteScreenX)) * cub->texWidth / cub->spriteWidth) / 256;
+		if (cub->transformY > 0 && cub->drawStartX > 0 &&
+				cub->drawStartX < cub->res.w &&
+				cub->transformY < cub->ZBuffer[cub->drawStartX])
 		{
 			cub->spriteLine = cub->drawStartY;
 			while (cub->spriteLine < cub->drawEndY)
 			{
-				cub->d = (cub->spriteLine) * 256 - cub->res.h * 128 + cub->spriteHeight * 128;
+				cub->d = (cub->spriteLine) * 256 - cub->res.h * 128 +
+					cub->spriteHeight * 128;
 				cub->texY = ((cub->d * cub->texHeight) / cub->spriteHeight) / 256;
 				if (cub->txt[4].img_data[cub->texX + cub->texY * cub->txt[4].w])
-					cub->img.img_data[cub->spriteLine * cub->res.w + cub->drawStartX] = cub->txt[4].img_data[cub->texX + cub->texY * cub->txt[4].w];
+				{
+					cub->img.img_data[cub->spriteLine * cub->res.w + cub->drawStartX] =
+						cub->txt[4].img_data[cub->texX + cub->texY * cub->txt[4].w];
+					if (cub->save == 1)
+					{
+						cub->image[((cub->drawEndY - cub->bmp_pos) * cub->res.w + cub->drawStartX) * 3 + 2] = (unsigned char)cub->txt[4].img_data[cub->texX + cub->texY * cub->txt[4].w];
+						cub->image[((cub->drawEndY - cub->bmp_pos) * cub->res.w + cub->drawStartX) * 3 + 1] = (unsigned char)cub->txt[4].img_data[cub->texX + cub->texY * cub->txt[4].w];
+						cub->image[((cub->drawEndY - cub->bmp_pos) * cub->res.w + cub->drawStartX) * 3 + 0] = (unsigned char)cub->txt[4].img_data[cub->texX + cub->texY * cub->txt[4].w];
+					}
+				}
+				cub->bmp_pos++;
 				cub->spriteLine++;
 			}
 		}

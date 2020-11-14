@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:16:51 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/11 10:32:49 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/14 09:38:10 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	calc(t_cub3d *cub)
 {
 	cub->hit = 0;
 	cub->img.h = 0;
+	cub->bmp_pos = 0;
 	cub->cameraX = 2 * cub->ray / (double)cub->res.w - 1;
 	cub->rayDirX = cub->dirX + cub->planeX * cub->cameraX;
 	cub->rayDirY = cub->dirY + cub->planeY * cub->cameraX;
@@ -85,9 +86,11 @@ void	hit(t_cub3d *cub)
 void	wall(t_cub3d *cub)
 {
 	if (cub->side == 0 || cub->side == 2)
-		cub->perpWallDist = (cub->mapX - cub->posX + (1 - cub->stepX) / 2) / cub->rayDirX;
+		cub->perpWallDist = (cub->mapX - cub->posX + (1 - cub->stepX) / 2) /
+			cub->rayDirX;
 	else
-		cub->perpWallDist = (cub->mapY - cub->posY + (1 - cub->stepY) / 2) / cub->rayDirY;
+		cub->perpWallDist = (cub->mapY - cub->posY + (1 - cub->stepY) / 2) /
+			cub->rayDirY;
 	cub->lineHeight = (int)(cub->res.h / cub->perpWallDist);
 	cub->drawStart = (-cub->lineHeight / 2) + (cub->res.h / 2);
 	if (cub->drawStart < 0)
@@ -106,33 +109,51 @@ void	wall(t_cub3d *cub)
 	if (cub->side == 1 && cub->rayDirY < 0)
 		cub->texX = cub->texWidth - cub->texX - 1;
 	cub->step = 1.0 * cub->texHeight / cub->lineHeight;
-	cub->texPos = (cub->drawStart - cub->res.h / 2 + cub->lineHeight / 2) * cub->step;
 }
 
 void	rendering(t_cub3d *cub)
 {
+	cub->texPos = (cub->drawStart - cub->res.h / 2 + cub->lineHeight / 2) *
+		cub->step;
 	while (cub->img.h < cub->res.h)
 	{
 		if (cub->img.h < cub->drawStart)
-			cub->img.img_data[cub->img.h * cub->res.w + cub->ray] = create_rgb(&cub->C);
-		if (cub->img.h >= cub->drawStart && cub->img.h <= cub->drawEnd)
 		{
-			cub->texY = (int)cub->texPos;
-			cub->texPos += cub->step;
-			if (cub->side == 0)
-				cub->img.img_data[cub->img.h * cub->res.w + cub->ray] = cub->txt[2].img_data[cub->texX + cub->texY * cub->txt[2].w];
-			else if (cub->side == 1)
-				cub->img.img_data[cub->img.h * cub->res.w + cub->ray] = cub->txt[3].img_data[cub->texX + cub->texY * cub->txt[3].w];
-			else if (cub->side == 2)
-				cub->img.img_data[cub->img.h * cub->res.w + cub->ray] = cub->txt[0].img_data[cub->texX + cub->texY * cub->txt[0].w];
-			else if (cub->side == 3)
-				cub->img.img_data[cub->img.h * cub->res.w + cub->ray] = cub->txt[1].img_data[cub->texX + cub->texY * cub->txt[1].w];
+			cub->img.img_data[cub->img.h * cub->res.w + cub->ray] = create_rgb(&cub->C);
+			bmp_filling(cub, &cub->F);
 		}
+		if (cub->img.h >= cub->drawStart && cub->img.h <= cub->drawEnd)
+			wallrendering(cub);
 		if (cub->img.h > cub->drawEnd)
+		{
 			cub->img.img_data[cub->img.h * cub->res.w + cub->ray] = create_rgb(&cub->F);
+			bmp_filling(cub, &cub->C);
+		}
 		cub->img.h++;
 	}
 	if (cub->spriteNum)
 		cub->ZBuffer[cub->ray] = cub->perpWallDist;
 	cub->ray++;
+}
+
+void	wallrendering(t_cub3d *cub)
+{
+	cub->texY = (int)cub->texPos;
+	cub->texPos += cub->step;
+	if (cub->side == 0)
+		cub->color = cub->txt[2].img_data[cub->texX + cub->texY * cub->txt[2].w];
+	else if (cub->side == 1)
+		cub->color = cub->txt[3].img_data[cub->texX + cub->texY * cub->txt[3].w];
+	else if (cub->side == 2)
+		cub->color = cub->txt[0].img_data[cub->texX + cub->texY * cub->txt[0].w];
+	else if (cub->side == 3)
+		cub->color = cub->txt[1].img_data[cub->texX + cub->texY * cub->txt[1].w];
+	cub->img.img_data[cub->img.h * cub->res.w + cub->ray] = cub->color;
+	if (cub->save == 1)
+	{
+		cub->image[(cub->ray + (cub->drawEnd - cub->bmp_pos) * cub->res.w) * 3 + 2] = cub->color >> 16;
+		cub->image[(cub->ray + (cub->drawEnd - cub->bmp_pos) * cub->res.w) * 3 + 1] = cub->color >> 8;
+		cub->image[(cub->ray + (cub->drawEnd - cub->bmp_pos) * cub->res.w) * 3 + 0] = cub->color;
+		cub->bmp_pos++;
+	}
 }

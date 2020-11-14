@@ -6,7 +6,7 @@
 #    By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 15:10:16 by ybouddou          #+#    #+#              #
-#    Updated: 2020/11/09 20:58:24 by ybouddou         ###   ########.fr        #
+#    Updated: 2020/11/13 14:14:47 by ybouddou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC = gnl/get_next_line.c\
 	  keys.c\
 	  drawing.c\
 	  sprite.c\
+	  bmp.c\
 	  
 
 OBJ = $(SRC:.c=.o)
