@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 13:37:19 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/16 12:57:21 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/16 13:29:58 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	spriteposition(t_cub3d *cub, int x)
 {
-	cub->sprite[cub->spriteN].x = x + 0.5;
-	cub->sprite[cub->spriteN].y = cub->parse.Y + 0.5;
-	cub->spriteN++;
-	cub->parse.Y++;
+	cub->sprite[cub->sprite_n].x = x + 0.5;
+	cub->sprite[cub->sprite_n].y = cub->parse.y + 0.5;
+	cub->sprite_n++;
+	cub->parse.y++;
 }
 
 void	spritesort(t_cub3d *cub)
@@ -27,10 +27,10 @@ void	spritesort(t_cub3d *cub)
 	int			j;
 
 	i = 0;
-	while (i < cub->spriteNum - 1)
+	while (i < cub->sprite_num - 1)
 	{
 		j = 0;
-		while (j < cub->spriteNum - i - 1)
+		while (j < cub->sprite_num - i - 1)
 		{
 			if (cub->sprite[j].dist < cub->sprite[j + 1].dist)
 			{
@@ -48,70 +48,70 @@ void	spritedistance(t_cub3d *cub)
 {
 	int		num;
 
-	cub->spriteN = 0;
-	while (cub->spriteN < cub->spriteNum)
+	cub->sprite_n = 0;
+	while (cub->sprite_n < cub->sprite_num)
 	{
-		num = cub->spriteN;
-		cub->sprite[cub->spriteN].order = cub->spriteN;
-		cub->sprite[num].dist = pow(cub->posX - cub->sprite[num].x, 2) +
-			pow(cub->posY - cub->sprite[cub->spriteN].y, 2);
-		cub->spriteN++;
+		num = cub->sprite_n;
+		cub->sprite[cub->sprite_n].order = cub->sprite_n;
+		cub->sprite[num].dist = pow(cub->posx - cub->sprite[num].x, 2) +
+			pow(cub->posy - cub->sprite[cub->sprite_n].y, 2);
+		cub->sprite_n++;
 	}
 	spritesort(cub);
-	cub->spriteN = 0;
+	cub->sprite_n = 0;
 }
 
 void	sprite(t_cub3d *cub)
 {
 	spritedistance(cub);
 	cub->bmp_pos = 0;
-	while (cub->spriteN < cub->spriteNum)
+	while (cub->sprite_n < cub->sprite_num)
 	{
-		cub->spriteX = cub->sprite[cub->spriteN].x - cub->posX;
-		cub->spriteY = cub->sprite[cub->spriteN].y - cub->posY;
-		cub->invDet = 1.0 / (cub->planeX * cub->dirY - cub->dirX * cub->planeY);
-		cub->transformX = cub->invDet * (cub->dirY * cub->spriteX -
-			cub->dirX * cub->spriteY);
-		cub->transformY = cub->invDet * (-cub->planeY * cub->spriteX +
-			cub->planeX * cub->spriteY);
-		cub->spriteScreenX = (int)((cub->res.w / 2) * (1 + cub->transformX /
-			cub->transformY));
-		cub->spriteHeight = abs((int)(cub->res.h / cub->transformY));
-		cub->drawStartY = -cub->spriteHeight / 2 + cub->res.h / 2;
-		cub->drawStartY = (cub->drawStartY < 0) ? 0 : cub->drawStartY;
-		cub->drawEndY = cub->spriteHeight / 2 + cub->res.h / 2;
-		if (cub->drawEndY >= cub->res.h)
-			cub->drawEndY = cub->res.h - 1;
-		cub->spriteWidth = abs((int)(cub->res.h / (cub->transformY)));
+		cub->spritex = cub->sprite[cub->sprite_n].x - cub->posx;
+		cub->spritey = cub->sprite[cub->sprite_n].y - cub->posy;
+		cub->invdet = 1.0 / (cub->planex * cub->diry - cub->dirx * cub->planey);
+		cub->transformx = cub->invdet * (cub->diry * cub->spritex -
+			cub->dirx * cub->spritey);
+		cub->transformy = cub->invdet * (-cub->planey * cub->spritex +
+			cub->planex * cub->spritey);
+		cub->spritescreenx = (int)((cub->res.w / 2) * (1 + cub->transformx /
+			cub->transformy));
+		cub->spriteheight = abs((int)(cub->res.h / cub->transformy));
+		cub->drawstarty = -cub->spriteheight / 2 + cub->res.h / 2;
+		cub->drawstarty = (cub->drawstarty < 0) ? 0 : cub->drawstarty;
+		cub->drawendy = cub->spriteheight / 2 + cub->res.h / 2;
+		if (cub->drawendy >= cub->res.h)
+			cub->drawendy = cub->res.h - 1;
+		cub->spritewidth = abs((int)(cub->res.h / (cub->transformy)));
 		spriterendering(cub);
-		cub->spriteN++;
+		cub->sprite_n++;
 	}
 }
 
 void	spriterendering(t_cub3d *cub)
 {
-	cub->drawStartX = -cub->spriteWidth / 2 + cub->spriteScreenX;
-	if (cub->drawStartX < 0)
-		cub->drawStartX = 0;
-	cub->drawEndX = cub->spriteWidth / 2 + cub->spriteScreenX;
-	if (cub->drawEndX >= cub->res.w)
-		cub->drawEndX = cub->res.w - 1;
-	while (cub->drawStartX < cub->drawEndX)
+	cub->drawstartx = -cub->spritewidth / 2 + cub->spritescreenx;
+	if (cub->drawstartx < 0)
+		cub->drawstartx = 0;
+	cub->drawendx = cub->spritewidth / 2 + cub->spritescreenx;
+	if (cub->drawendx >= cub->res.w)
+		cub->drawendx = cub->res.w - 1;
+	while (cub->drawstartx < cub->drawendx)
 	{
 		cub->bmp_pos = 0;
-		cub->texX = (int)(256 * (cub->drawStartX - (-cub->spriteWidth / 2 +
-			cub->spriteScreenX)) * cub->texWidth / cub->spriteWidth) / 256;
-		if (cub->transformY > 0 && cub->drawStartX > 0 &&
-				cub->drawStartX < cub->res.w &&
-				cub->transformY < cub->sprite_buf[cub->drawStartX])
+		cub->tex_x = (int)(256 * (cub->drawstartx - (-cub->spritewidth / 2 +
+			cub->spritescreenx)) * cub->texwidth / cub->spritewidth) / 256;
+		if (cub->transformy > 0 && cub->drawstartx > 0 &&
+				cub->drawstartx < cub->res.w &&
+				cub->transformy < cub->sprite_buf[cub->drawstartx])
 		{
-			cub->spriteLine = cub->drawStartY;
-			while (cub->spriteLine < cub->drawEndY)
+			cub->spriteline = cub->drawstarty;
+			while (cub->spriteline < cub->drawendy)
 			{
 				sprite_image(cub);
-				cub->spriteLine++;
+				cub->spriteline++;
 			}
 		}
-		cub->drawStartX++;
+		cub->drawstartx++;
 	}
 }

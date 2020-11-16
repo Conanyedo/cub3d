@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 13:26:43 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/16 12:11:17 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/16 13:27:50 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,29 @@
 
 void			init(t_cub3d *cub)
 {
-	cub->rotateSpeed = 0.03;
-	cub->moveSpeed = 0.15;
-	cub->path.NO = NULL;
-	cub->path.SO = NULL;
-	cub->path.WE = NULL;
-	cub->path.EA = NULL;
-	cub->path.S = NULL;
+	cub->rotatespeed = 0.03;
+	cub->movespeed = 0.15;
+	cub->path.no = NULL;
+	cub->path.so = NULL;
+	cub->path.we = NULL;
+	cub->path.ea = NULL;
+	cub->path.s = NULL;
 	cub->map = NULL;
-	cub->parse.X = 0;
+	cub->parse.x = 0;
 	cub->parse.spawn = 0;
 	cub->parse.line = NULL;
 	cub->parse.colors = NULL;
 	cub->parse.splitted = NULL;
 	cub->rep.res = 0;
-	cub->rep.NO = 0;
-	cub->rep.SO = 0;
-	cub->rep.WE = 0;
-	cub->rep.EA = 0;
-	cub->rep.S = 0;
-	cub->rep.F = 0;
-	cub->rep.C = 0;
-	cub->spriteNum = 0;
-	cub->spriteN = 0;
+	cub->rep.no = 0;
+	cub->rep.so = 0;
+	cub->rep.we = 0;
+	cub->rep.ea = 0;
+	cub->rep.s = 0;
+	cub->rep.f = 0;
+	cub->rep.c = 0;
+	cub->sprite_num = 0;
+	cub->sprite_n = 0;
 	cub->save = 1;
 }
 

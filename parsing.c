@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:01:50 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/12 10:19:27 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/16 13:17:01 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,25 @@ void	fc(t_cub3d *cub)
 {
 	if (*cub->parse.line == 'F')
 	{
-		if (cub->rep.F == 1)
+		if (cub->rep.f == 1)
 			error_msg_free("Error\nRepetition of F\n", cub);
 		if (cub->parse.line[1] != ' ')
 			error_msg_free("Error\nAnother char found after F\n", cub);
 		cub->parse.splitted = ft_split(cub->parse.line, ' ');
 		fc_checker(&cub->parse, cub);
 		cub->parse.colors = ft_split(cub->parse.splitted[1], ',');
-		fc_color(&cub->F, &cub->parse, &cub->rep.F, cub);
+		fc_color(&cub->f, &cub->parse, &cub->rep.f, cub);
 	}
 	else if (*cub->parse.line == 'C')
 	{
-		if (cub->rep.C == 1)
+		if (cub->rep.c == 1)
 			error_msg_free("Error\nRepetition of C\n", cub);
 		if (cub->parse.line[1] != ' ')
 			error_msg_free("Error\nAnother char found after C\n", cub);
 		cub->parse.splitted = ft_split(cub->parse.line, ' ');
 		fc_checker(&cub->parse, cub);
 		cub->parse.colors = ft_split(cub->parse.splitted[1], ',');
-		fc_color(&cub->C, &cub->parse, &cub->rep.C, cub);
+		fc_color(&cub->c, &cub->parse, &cub->rep.c, cub);
 	}
 }
 
@@ -110,27 +110,27 @@ void	identifier(t_cub3d *cub)
 {
 	if (*cub->parse.line == 'S' && *(cub->parse.line + 1) != 'O')
 	{
-		path(&cub->path.S, cub, &cub->fd.S, &cub->rep.S);
-		printf("S : %s\n", cub->path.S);
+		path(&cub->path.s, cub, &cub->fd.s, &cub->rep.s);
+		printf("S : %s\n", cub->path.s);
 	}
 	else if (*cub->parse.line == 'N' && *(cub->parse.line + 1) == 'O')
 	{
-		path(&cub->path.NO, cub, &cub->fd.NO, &cub->rep.NO);
-		printf("NO : %s\n", cub->path.NO);
+		path(&cub->path.no, cub, &cub->fd.no, &cub->rep.no);
+		printf("NO : %s\n", cub->path.no);
 	}
 	else if (*cub->parse.line == 'S' && *(cub->parse.line + 1) == 'O')
 	{
-		path(&cub->path.SO, cub, &cub->fd.SO, &cub->rep.SO);
-		printf("SO : %s\n", cub->path.SO);
+		path(&cub->path.so, cub, &cub->fd.so, &cub->rep.so);
+		printf("SO : %s\n", cub->path.so);
 	}
 	else if (*cub->parse.line == 'W' && *(cub->parse.line + 1) == 'E')
 	{
-		path(&cub->path.WE, cub, &cub->fd.WE, &cub->rep.WE);
-		printf("WE : %s\n", cub->path.WE);
+		path(&cub->path.we, cub, &cub->fd.we, &cub->rep.we);
+		printf("WE : %s\n", cub->path.we);
 	}
 	else if (*cub->parse.line == 'E' && *(cub->parse.line + 1) == 'A')
 	{
-		path(&cub->path.EA, cub, &cub->fd.EA, &cub->rep.EA);
-		printf("EA : %s\n", cub->path.EA);
+		path(&cub->path.ea, cub, &cub->fd.ea, &cub->rep.ea);
+		printf("EA : %s\n", cub->path.ea);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:47:27 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/16 13:02:24 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/16 13:29:58 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,32 +34,32 @@ typedef struct	s_mlx
 typedef	struct	s_fd
 {
 	int		lines;
-	int		NO;
-	int		SO;
-	int		WE;
-	int		EA;
-	int		S;
+	int		no;
+	int		so;
+	int		we;
+	int		ea;
+	int		s;
 }				t_fd;
 
 typedef struct	s_repetition
 {
 	int		res;
-	int		NO;
-	int		SO;
-	int		WE;
-	int		EA;
-	int		S;
-	int		F;
-	int		C;
+	int		no;
+	int		so;
+	int		we;
+	int		ea;
+	int		s;
+	int		f;
+	int		c;
 }				t_rep;
 
 typedef struct	s_path
 {
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
-	char	*S;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	*s;
 }				t_path;
 
 typedef struct	s_parse
@@ -68,8 +68,8 @@ typedef struct	s_parse
 	char	*line;
 	char	**splitted;
 	char	**colors;
-	int		X;
-	int		Y;
+	int		x;
+	int		y;
 	int		spawn;
 	int		rgb;
 }				t_parse;
@@ -106,8 +106,8 @@ typedef struct	s_cub3d
 	t_rep		rep;
 	t_mlx		mlx;
 	t_path		path;
-	t_rgb		F;
-	t_rgb		C;
+	t_rgb		f;
+	t_rgb		c;
 	t_parse		parse;
 	t_img		img;
 	t_fd		fd;
@@ -123,57 +123,57 @@ typedef struct	s_cub3d
 	int			keyboard[300];
 	char		**map;
 	int			ray;
-	int			mapX;
-	int			mapY;
-	double		posX;
-	double		posY;
-	double		dirX;
-	double		dirY;
-	double		planeX;
-	double		planeY;
-	double		oldDirX;
-	double		oldPlaneX;
-	double		rotateSpeed;
-	double		moveSpeed;
-	double		cameraX;
-	double		rayDirX;
-	double		rayDirY;
-	double		sidedistX;
-	double		sidedistY;
-	double		deltaDistX;
-	double		deltaDistY;
-	double		perpWallDist;
-	int			stepX;
-	int			stepY;
+	int			mapx;
+	int			mapy;
+	double		posx;
+	double		posy;
+	double		dirx;
+	double		diry;
+	double		planex;
+	double		planey;
+	double		olddirx;
+	double		oldplanex;
+	double		rotatespeed;
+	double		movespeed;
+	double		camerx;
+	double		raydirx;
+	double		raydiry;
+	double		sidedistx;
+	double		sidedisty;
+	double		deltadistx;
+	double		deltadisty;
+	double		perpwalldist;
+	int			stepx;
+	int			stepy;
 	int			hit;
 	int			side;
-	int			lineHeight;
-	int			drawStart;
-	int			drawEnd;
-	int			texWidth;
-	int			texHeight;
-	double		wallX;
-	int			texX;
-	int			texY;
+	int			lineheight;
+	int			drawstart;
+	int			drawend;
+	int			texwidth;
+	int			texheight;
+	double		wallx;
+	int			tex_x;
+	int			tex_y;
 	double		step;
-	double		texPos;
+	double		texpos;
 
-	int			spriteNum;
-	int			spriteN;
+	int			sprite_num;
+	int			sprite_n;
 	double		*sprite_buf;
-	double		spriteX;
-	double		spriteY;
-	double		invDet;
-	double		transformX;
-	double		transformY;
-	int			spriteScreenX;
-	int			spriteHeight;
-	int			spriteWidth;
-	int			drawStartY;
-	int			drawStartX;
-	int			drawEndY;
-	int			drawEndX;
-	int			spriteLine;
+	double		spritex;
+	double		spritey;
+	double		invdet;
+	double		transformx;
+	double		transformy;
+	int			spritescreenx;
+	int			spriteheight;
+	int			spritewidth;
+	int			drawstarty;
+	int			drawstartx;
+	int			drawendy;
+	int			drawendx;
+	int			spriteline;
 	int			d;
 }				t_cub3d;
 

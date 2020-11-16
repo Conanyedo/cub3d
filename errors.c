@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:08:52 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/16 12:06:13 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/16 13:15:09 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@ void	exist(t_cub3d *cub)
 {
 	if (cub->rep.res == 0)
 		error_msg_free("ERROR\nResolution not found", cub);
-	else if (cub->rep.NO == 0 || cub->rep.SO == 0 || cub->rep.EA == 0 ||
-		cub->rep.WE == 0 || cub->rep.S == 0)
+	else if (cub->rep.no == 0 || cub->rep.so == 0 || cub->rep.ea == 0 ||
+		cub->rep.we == 0 || cub->rep.s == 0)
 		error_msg_free("ERROR\nPath not found", cub);
-	else if (cub->rep.F == 0)
+	else if (cub->rep.f == 0)
 		error_msg_free("ERROR\nF not found", cub);
-	else if (cub->rep.C == 0)
+	else if (cub->rep.c == 0)
 		error_msg_free("ERROR\nC not found", cub);
-	if (cub->parse.X == 0)
+	if (cub->parse.x == 0)
 	{
 		cub->map = (char**)malloc(2 * sizeof(char*));
 		cub->map[1] = NULL;
-		cub->map[cub->parse.X] = cub->parse.line;
+		cub->map[cub->parse.x] = cub->parse.line;
 	}
 	else
 		cub->map = push(cub);
@@ -36,12 +36,12 @@ void	exist(t_cub3d *cub)
 void	error_msg_free(char *s, t_cub3d *cub)
 {
 	free(cub->parse.line);
-	free(cub->path.NO);
-	free(cub->path.SO);
-	free(cub->path.EA);
-	free(cub->path.WE);
-	free(cub->path.S);
-	if (cub->parse.X > 0)
+	free(cub->path.no);
+	free(cub->path.so);
+	free(cub->path.ea);
+	free(cub->path.we);
+	free(cub->path.s);
+	if (cub->parse.x > 0)
 		ft_free(cub->map);
 	ft_putstr_fd(s, 2);
 	exit(1);
@@ -51,11 +51,11 @@ void	error_free(char *s, t_cub3d *cub, char **tofree)
 {
 	ft_free(tofree);
 	free(cub->parse.line);
-	free(cub->path.NO);
-	free(cub->path.SO);
-	free(cub->path.EA);
-	free(cub->path.WE);
-	free(cub->path.S);
+	free(cub->path.no);
+	free(cub->path.so);
+	free(cub->path.ea);
+	free(cub->path.we);
+	free(cub->path.s);
 	ft_putstr_fd(s, 2);
 	exit(1);
 }
