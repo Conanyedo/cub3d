@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 09:05:47 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/16 09:27:22 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/16 13:00:34 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,12 @@ void			bmp(t_cub3d *cub, int ac, char **av)
 
 void			bmp_filling(t_cub3d *cub, t_rgb *fc)
 {
-	int		pos;
-
-	pos = cub->ray + cub->img.h * cub->res.w;
+	cub->abrv = cub->ray + cub->img.h * cub->res.w;
 	if (cub->save == 1)
 	{
-		cub->image[(pos) * 3 + 2] = (unsigned char)fc->r;
-		cub->image[(pos) * 3 + 1] = (unsigned char)fc->g;
-		cub->image[(pos) * 3 + 0] = (unsigned char)fc->b;
+		cub->image[(cub->abrv) * 3 + 2] = (char)fc->r;
+		cub->image[(cub->abrv) * 3 + 1] = (char)fc->g;
+		cub->image[(cub->abrv) * 3 + 0] = (char)fc->b;
 	}
 }
 

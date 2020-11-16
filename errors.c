@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:08:52 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/11 10:36:09 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/16 12:06:13 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,14 @@ void	exist(t_cub3d *cub)
 		error_msg_free("ERROR\nF not found", cub);
 	else if (cub->rep.C == 0)
 		error_msg_free("ERROR\nC not found", cub);
-	else if (cub->parse.mapline == 0)
-		error_msg_free("ERROR\nMap not found", cub);
-	free(cub->parse.line);
+	if (cub->parse.X == 0)
+	{
+		cub->map = (char**)malloc(2 * sizeof(char*));
+		cub->map[1] = NULL;
+		cub->map[cub->parse.X] = cub->parse.line;
+	}
+	else
+		cub->map = push(cub);
 }
 
 void	error_msg_free(char *s, t_cub3d *cub)

@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 08:33:16 by root              #+#    #+#             */
-/*   Updated: 2020/11/14 12:35:03 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/16 12:25:56 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,7 @@ void	map_checker(t_cub3d *cub)
 
 void	map(t_cub3d *cub)
 {
-	if (cub->parse.mapline == 0)
-	{
-		cub->map = (char**)malloc(2 * sizeof(char*));
-		cub->map[1] = NULL;
-		cub->map[cub->parse.X] = cub->parse.line;
-		cub->parse.mapline = 1;
-	}
-	else
-		cub->map = push(cub);
+	exist(cub);
 	map_checker(cub);
 	cub->parse.Y = 0;
 	while (cub->map[cub->parse.X][cub->parse.Y])
@@ -59,7 +51,7 @@ void	map(t_cub3d *cub)
 			spawning(cub);
 		else if (cub->map[cub->parse.X][cub->parse.Y] == '2' &&
 				!cub->map[cub->parse.X][cub->parse.Y + 1])
-			error_msg_free("ERROR\nSprite in an invalid place", cub);
+			error_msg_free("ERROR\nSprite position invalid", cub);
 		else if (cub->map[cub->parse.X][cub->parse.Y] == '2')
 			cub->spriteNum++;
 		else if (cub->parse.spawn == 1 && character(cub) == 1)
@@ -92,79 +84,35 @@ char	**push(t_cub3d *cub)
 	return (tmp);
 }
 
-void	spawning(t_cub3d *cub)
+void	space(t_cub3d *cub)
 {
-	if (!cub->map[cub->parse.X][cub->parse.Y + 1] ||
-			cub->map[cub->parse.X - 1][cub->parse.Y] == ' ' ||
-			cub->map[cub->parse.X - 1][cub->parse.Y] == '\0')
-		error_msg_free("ERROR\nSpawning position in an invalid place", cub);
-	if (cub->map[cub->parse.X][cub->parse.Y] == 'N' ||
-			cub->map[cub->parse.X][cub->parse.Y] == 'S')
-		spawning_ns(cub);
-	else if (cub->map[cub->parse.X][cub->parse.Y] == 'E')
+	if (cub->map[cub->parse.X][cub->parse.Y - 1] != ' ' &&
+			cub->map[cub->parse.X][cub->parse.Y - 1] != '1')
+		error_msg_free("ERROR\nInvalid char before space", cub);
+	else if (cub->map[cub->parse.X][cub->parse.Y + 1] != ' ' &&
+			cub->map[cub->parse.X][cub->parse.Y + 1] != '1' &&
+			cub->map[cub->parse.X][cub->parse.Y + 1] != '\0')
+		error_msg_free("ERROR\nInvalid char after space", cub);
+	else if (cub->parse.X - 1 >= 0 &&
+			cub->map[cub->parse.X - 1][cub->parse.Y] != ' ' &&
+			cub->map[cub->parse.X - 1][cub->parse.Y] != '1')
 	{
-		cub->posX = cub->parse.X;
-		cub->posY = cub->parse.Y;
-		cub->dirX = 0;
-		cub->dirY = 1;
-		cub->planeX = 0.66;
-		cub->planeY = 0;
-		cub->parse.spawn = 1;
-		cub->map[cub->parse.X][cub->parse.Y] = '0';
+		if (cub->parse.Y < (int)ft_strlen(cub->map[cub->parse.X - 1]))
+			error_msg_free("ERROR\nInvalid char above space", cub);
 	}
-	else if (cub->map[cub->parse.X][cub->parse.Y] == 'W')
-	{
-		cub->posX = cub->parse.X;
-		cub->posY = cub->parse.Y;
-		cub->dirX = 0;
-		cub->dirY = -1;
-		cub->planeX = -0.66;
-		cub->planeY = 0;
-		cub->parse.spawn = 1;
-		cub->map[cub->parse.X][cub->parse.Y] = '0';
-	}
+	cub->parse.Y++;
 }
 
-void	spawning_ns(t_cub3d *cub)
+void	zero(t_cub3d *cub)
 {
-	if (cub->map[cub->parse.X][cub->parse.Y] == 'N')
-	{
-		cub->posX = cub->parse.X;
-		cub->posY = cub->parse.Y;
-		cub->dirX = -1;
-		cub->dirY = 0;
-		cub->planeX = 0;
-		cub->planeY = 0.66;
-		cub->parse.spawn = 1;
-		cub->map[cub->parse.X][cub->parse.Y] = '0';
-	}
-	else if (cub->map[cub->parse.X][cub->parse.Y] == 'S')
-	{
-		cub->posX = cub->parse.X;
-		cub->posY = cub->parse.Y;
-		cub->dirX = 1;
-		cub->dirY = 0;
-		cub->planeX = 0;
-		cub->planeY = -0.66;
-		cub->parse.spawn = 1;
-		cub->map[cub->parse.X][cub->parse.Y] = '0';
-	}
-}
-
-int		character(t_cub3d *cub)
-{
-	int	found;
-
-	found = 0;
-	if (cub->map[cub->parse.X][cub->parse.Y] == 'N' ||
-			cub->map[cub->parse.X][cub->parse.Y] == 'S' ||
-			cub->map[cub->parse.X][cub->parse.Y] == 'W' ||
-			cub->map[cub->parse.X][cub->parse.Y] == 'E')
-		found = 1;
-	else if (!cub->map[cub->parse.X][cub->parse.Y] ||
-			cub->map[cub->parse.X][cub->parse.Y] == '0' ||
-			cub->map[cub->parse.X][cub->parse.Y] == ' ' ||
-			cub->map[cub->parse.X][cub->parse.Y] == '1')
-		found = 2;
-	return (found);
+	if (cub->map[cub->parse.X][cub->parse.Y - 1] == ' ')
+		error_msg_free("ERROR\nSpace before 0", cub);
+	else if (cub->map[cub->parse.X][cub->parse.Y + 1] == ' ')
+		error_msg_free("ERROR\nSpace after 0", cub);
+	else if (cub->map[cub->parse.X][cub->parse.Y + 1] == '\0')
+		error_msg_free("ERROR\n0 at the end of the line", cub);
+	else if (cub->parse.X - 1 >= 0 &&
+			cub->map[cub->parse.X - 1][cub->parse.Y] <= 32)
+		error_msg_free("ERROR\nSpace or empty line above 0", cub);
+	cub->parse.Y++;
 }

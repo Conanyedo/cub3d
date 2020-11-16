@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 13:26:43 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/14 12:33:04 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/16 12:11:17 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ void			init(t_cub3d *cub)
 	cub->path.EA = NULL;
 	cub->path.S = NULL;
 	cub->map = NULL;
-	cub->parse.mapline = 0;
 	cub->parse.X = 0;
 	cub->parse.spawn = 0;
-	cub->parse.r = 1;
 	cub->parse.line = NULL;
 	cub->parse.colors = NULL;
 	cub->parse.splitted = NULL;
@@ -37,8 +35,6 @@ void			init(t_cub3d *cub)
 	cub->rep.S = 0;
 	cub->rep.F = 0;
 	cub->rep.C = 0;
-	cub->texHeight = 64;
-	cub->texWidth = 64;
 	cub->spriteNum = 0;
 	cub->spriteN = 0;
 	cub->save = 1;

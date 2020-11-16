@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:16:51 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/14 09:38:10 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/16 12:57:53 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,41 +119,21 @@ void	rendering(t_cub3d *cub)
 	{
 		if (cub->img.h < cub->drawStart)
 		{
-			cub->img.img_data[cub->img.h * cub->res.w + cub->ray] = create_rgb(&cub->C);
+			cub->img.img_data[cub->img.h * cub->res.w + cub->ray] =
+				create_rgb(&cub->C);
 			bmp_filling(cub, &cub->F);
 		}
 		if (cub->img.h >= cub->drawStart && cub->img.h <= cub->drawEnd)
 			wallrendering(cub);
 		if (cub->img.h > cub->drawEnd)
 		{
-			cub->img.img_data[cub->img.h * cub->res.w + cub->ray] = create_rgb(&cub->F);
+			cub->img.img_data[cub->img.h * cub->res.w + cub->ray] =
+				create_rgb(&cub->F);
 			bmp_filling(cub, &cub->C);
 		}
 		cub->img.h++;
 	}
 	if (cub->spriteNum)
-		cub->ZBuffer[cub->ray] = cub->perpWallDist;
+		cub->sprite_buf[cub->ray] = cub->perpWallDist;
 	cub->ray++;
-}
-
-void	wallrendering(t_cub3d *cub)
-{
-	cub->texY = (int)cub->texPos;
-	cub->texPos += cub->step;
-	if (cub->side == 0)
-		cub->color = cub->txt[2].img_data[cub->texX + cub->texY * cub->txt[2].w];
-	else if (cub->side == 1)
-		cub->color = cub->txt[3].img_data[cub->texX + cub->texY * cub->txt[3].w];
-	else if (cub->side == 2)
-		cub->color = cub->txt[0].img_data[cub->texX + cub->texY * cub->txt[0].w];
-	else if (cub->side == 3)
-		cub->color = cub->txt[1].img_data[cub->texX + cub->texY * cub->txt[1].w];
-	cub->img.img_data[cub->img.h * cub->res.w + cub->ray] = cub->color;
-	if (cub->save == 1)
-	{
-		cub->image[(cub->ray + (cub->drawEnd - cub->bmp_pos) * cub->res.w) * 3 + 2] = cub->color >> 16;
-		cub->image[(cub->ray + (cub->drawEnd - cub->bmp_pos) * cub->res.w) * 3 + 1] = cub->color >> 8;
-		cub->image[(cub->ray + (cub->drawEnd - cub->bmp_pos) * cub->res.w) * 3 + 0] = cub->color;
-		cub->bmp_pos++;
-	}
 }

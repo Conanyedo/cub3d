@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 13:37:19 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/14 12:34:13 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/16 12:57:21 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,6 @@ void	sprite(t_cub3d *cub)
 		if (cub->drawEndY >= cub->res.h)
 			cub->drawEndY = cub->res.h - 1;
 		cub->spriteWidth = abs((int)(cub->res.h / (cub->transformY)));
-		cub->drawStartX = -cub->spriteWidth / 2 + cub->spriteScreenX;
-		if (cub->drawStartX < 0)
-			cub->drawStartX = 0;
-		cub->drawEndX = cub->spriteWidth / 2 + cub->spriteScreenX;
-		if (cub->drawEndX >= cub->res.w)
-			cub->drawEndX = cub->res.w - 1;
 		spriterendering(cub);
 		cub->spriteN++;
 	}
@@ -96,6 +90,12 @@ void	sprite(t_cub3d *cub)
 
 void	spriterendering(t_cub3d *cub)
 {
+	cub->drawStartX = -cub->spriteWidth / 2 + cub->spriteScreenX;
+	if (cub->drawStartX < 0)
+		cub->drawStartX = 0;
+	cub->drawEndX = cub->spriteWidth / 2 + cub->spriteScreenX;
+	if (cub->drawEndX >= cub->res.w)
+		cub->drawEndX = cub->res.w - 1;
 	while (cub->drawStartX < cub->drawEndX)
 	{
 		cub->bmp_pos = 0;
@@ -103,26 +103,12 @@ void	spriterendering(t_cub3d *cub)
 			cub->spriteScreenX)) * cub->texWidth / cub->spriteWidth) / 256;
 		if (cub->transformY > 0 && cub->drawStartX > 0 &&
 				cub->drawStartX < cub->res.w &&
-				cub->transformY < cub->ZBuffer[cub->drawStartX])
+				cub->transformY < cub->sprite_buf[cub->drawStartX])
 		{
 			cub->spriteLine = cub->drawStartY;
 			while (cub->spriteLine < cub->drawEndY)
 			{
-				cub->d = (cub->spriteLine) * 256 - cub->res.h * 128 +
-					cub->spriteHeight * 128;
-				cub->texY = ((cub->d * cub->texHeight) / cub->spriteHeight) / 256;
-				if (cub->txt[4].img_data[cub->texX + cub->texY * cub->txt[4].w])
-				{
-					cub->img.img_data[cub->spriteLine * cub->res.w + cub->drawStartX] =
-						cub->txt[4].img_data[cub->texX + cub->texY * cub->txt[4].w];
-					if (cub->save == 1)
-					{
-						cub->image[((cub->drawEndY - cub->bmp_pos) * cub->res.w + cub->drawStartX) * 3 + 2] = (unsigned char)cub->txt[4].img_data[cub->texX + cub->texY * cub->txt[4].w];
-						cub->image[((cub->drawEndY - cub->bmp_pos) * cub->res.w + cub->drawStartX) * 3 + 1] = (unsigned char)cub->txt[4].img_data[cub->texX + cub->texY * cub->txt[4].w];
-						cub->image[((cub->drawEndY - cub->bmp_pos) * cub->res.w + cub->drawStartX) * 3 + 0] = (unsigned char)cub->txt[4].img_data[cub->texX + cub->texY * cub->txt[4].w];
-					}
-				}
-				cub->bmp_pos++;
+				sprite_image(cub);
 				cub->spriteLine++;
 			}
 		}

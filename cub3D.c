@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 00:30:45 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/16 09:20:19 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/16 13:00:41 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 void	draw(t_cub3d *cub)
 {
 	cub->img.img_ptr = mlx_new_image(cub->mlx.p, cub->res.w, cub->res.h);
-	cub->img.img_data = (int *)mlx_get_data_addr(cub->img.img_ptr, &cub->img.bpp, &cub->img.size_line, &cub->img.endian);
+	cub->img.img_data = (int *)mlx_get_data_addr(cub->img.img_ptr,
+		&cub->img.bpp, &cub->img.size_line, &cub->img.endian);
 	cub->ray = 0;
+	cub->texHeight = 64;
+	cub->texWidth = 64;
 	while (cub->ray < cub->res.w)
 	{
 		calc(cub);
@@ -48,27 +51,33 @@ void	texture(t_cub3d *cub)
 {
 	cub->mlx.p = mlx_init();
 	cub->mlx.w = mlx_new_window(cub->mlx.p, cub->res.w, cub->res.h, "cub3d");
-	cub->txt[0].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.NO, &cub->txt[0].w, &cub->txt[0].h);
-	cub->txt[0].img_data = (int*)mlx_get_data_addr(cub->txt[0].img_ptr, &cub->txt[0].bpp, &cub->txt[0].size_line, &cub->txt[0].endian);
-	cub->txt[1].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.WE, &cub->txt[1].w, &cub->txt[1].h);
-	cub->txt[1].img_data = (int*)mlx_get_data_addr(cub->txt[1].img_ptr, &cub->txt[1].bpp, &cub->txt[1].size_line, &cub->txt[1].endian);
-	cub->txt[2].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.SO, &cub->txt[2].w, &cub->txt[2].h);
-	cub->txt[2].img_data = (int*)mlx_get_data_addr(cub->txt[2].img_ptr, &cub->txt[2].bpp, &cub->txt[2].size_line, &cub->txt[2].endian);
-	cub->txt[3].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.EA, &cub->txt[3].w, &cub->txt[3].h);
-	cub->txt[3].img_data = (int*)mlx_get_data_addr(cub->txt[3].img_ptr, &cub->txt[3].bpp, &cub->txt[3].size_line, &cub->txt[3].endian);
-	cub->txt[4].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.S, &cub->txt[4].w, &cub->txt[4].h);
-	cub->txt[4].img_data = (int*)mlx_get_data_addr(cub->txt[4].img_ptr, &cub->txt[4].bpp, &cub->txt[4].size_line, &cub->txt[4].endian);
-	free(cub->path.NO);
-	free(cub->path.SO);
-	free(cub->path.EA);
-	free(cub->path.WE);
-	free(cub->path.S);
-	cub->image = (unsigned char *)malloc(cub->res.w * cub->res.h * 3);
-	//system("killall afplay 2&>/dev/null >/dev/null\n afplay -q 1 ./texture/music.mp3&");
+	cub->txt[0].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.NO,
+		&cub->txt[0].w, &cub->txt[0].h);
+	cub->txt[0].img_data = (int*)mlx_get_data_addr(cub->txt[0].img_ptr,
+		&cub->txt[0].bpp, &cub->txt[0].size_line, &cub->txt[0].endian);
+	cub->txt[1].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.WE,
+		&cub->txt[1].w, &cub->txt[1].h);
+	cub->txt[1].img_data = (int*)mlx_get_data_addr(cub->txt[1].img_ptr,
+		&cub->txt[1].bpp, &cub->txt[1].size_line, &cub->txt[1].endian);
+	cub->txt[2].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.SO,
+		&cub->txt[2].w, &cub->txt[2].h);
+	cub->txt[2].img_data = (int*)mlx_get_data_addr(cub->txt[2].img_ptr,
+		&cub->txt[2].bpp, &cub->txt[2].size_line, &cub->txt[2].endian);
+	cub->txt[3].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.EA,
+		&cub->txt[3].w, &cub->txt[3].h);
+	cub->txt[3].img_data = (int*)mlx_get_data_addr(cub->txt[3].img_ptr,
+		&cub->txt[3].bpp, &cub->txt[3].size_line, &cub->txt[3].endian);
+	cub->txt[4].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.S,
+		&cub->txt[4].w, &cub->txt[4].h);
+	cub->txt[4].img_data = (int*)mlx_get_data_addr(cub->txt[4].img_ptr,
+		&cub->txt[4].bpp, &cub->txt[4].size_line, &cub->txt[4].endian);
+	free_path(cub);
+	cub->image = (char *)malloc(cub->res.w * cub->res.h * 3);
 }
 
 void	parsing(t_cub3d *cub)
 {
+	cub->parse.r = 1;
 	while (cub->parse.r == 1)
 	{
 		cub->parse.r = get_next_line(cub->fd.lines, &cub->parse.line);
@@ -80,19 +89,16 @@ void	parsing(t_cub3d *cub)
 			*cub->parse.line == 'W' || *cub->parse.line == 'E')
 			identifier(cub);
 		else if (*cub->parse.line == ' ' || *cub->parse.line == '1' ||
-			*cub->parse.line == '0' || (*cub->parse.line == '\0' && cub->parse.X > 0))
+			*cub->parse.line == '0')
 			map(cub);
 		else if (*cub->parse.line)
 			error_msg_free("Error\nWrong info\n", cub);
 	}
-	if (cub->spriteNum)
-	{
-		cub->ZBuffer = (double*)malloc((cub->res.w + 1) * sizeof(double));
-		cub->sprite = malloc((cub->spriteNum + 1) * sizeof(t_sprite));
-	}
-	if (cub->parse.mapline)
+	if_sprite(cub);
+	if (cub->parse.X)
 		map_errors(cub);
-	exist(cub);
+	else
+		error_msg_free("ERROR\nMap not found", cub);
 }
 
 int		main(int ac, char **av)

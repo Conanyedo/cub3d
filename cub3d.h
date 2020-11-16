@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:47:27 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/16 10:01:00 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/16 13:02:24 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ typedef struct	s_path
 typedef struct	s_parse
 {
 	int		r;
-	int		mapline;
 	char	*line;
 	char	**splitted;
 	char	**colors;
@@ -114,12 +113,13 @@ typedef struct	s_cub3d
 	t_fd		fd;
 	t_img		txt[5];
 	t_sprite	*sprite;
-	
-	unsigned char		*image;
+
+	char		*image;
 	int			save;
 	int			color;
 	int			bmp_pos;
-	
+	int			abrv;
+
 	int			keyboard[300];
 	char		**map;
 	int			ray;
@@ -160,7 +160,7 @@ typedef struct	s_cub3d
 
 	int			spriteNum;
 	int			spriteN;
-	double		*ZBuffer;
+	double		*sprite_buf;
 	double		spriteX;
 	double		spriteY;
 	double		invDet;
@@ -192,11 +192,13 @@ void			sprit(t_cub3d *cub);
 void			map(t_cub3d *cub);
 void			map_checker(t_cub3d *cub);
 void			map_errors(t_cub3d *cub);
+void			map_check_next(t_cub3d *cub, int i);
 char			**push(t_cub3d *cub);
 void			exist(t_cub3d *cub);
 void			error_msg_free(char *s, t_cub3d *cub);
 void			error_free(char *s, t_cub3d *cub, char **tofree);
 void			error_msg(char *s);
+void			free_path(t_cub3d *cub);
 void			fc_color(t_rgb *fc, t_parse *parse, int *rep, t_cub3d *cub);
 void			fc_checker(t_parse *parse, t_cub3d *cub);
 void			path(char **path, t_cub3d *cub, int *fd, int *rep);
@@ -206,6 +208,7 @@ void			zero(t_cub3d *cub);
 void			last_line(t_cub3d *cub);
 void			spawning(t_cub3d *cub);
 void			spawning_ns(t_cub3d *cub);
+void			spawning_ew(t_cub3d *cub);
 int				character(t_cub3d *cub);
 void			moves_up_down(t_cub3d *cub);
 void			movesides(t_cub3d *cub);
@@ -221,6 +224,8 @@ void			spritedistance(t_cub3d *cub);
 void			spritesort(t_cub3d *cub);
 void			sprite(t_cub3d *cub);
 void			spriterendering(t_cub3d *cub);
+void			sprite_image(t_cub3d *cub);
+void			if_sprite(t_cub3d *cub);
 void			bmp(t_cub3d *cub, int ac, char **av);
 void			bmp_save(t_cub3d *cub);
 void			bmp_filling(t_cub3d *cub, t_rgb *fc);

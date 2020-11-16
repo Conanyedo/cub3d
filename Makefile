@@ -6,7 +6,7 @@
 #    By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 15:10:16 by ybouddou          #+#    #+#              #
-#    Updated: 2020/11/16 10:00:40 by ybouddou         ###   ########.fr        #
+#    Updated: 2020/11/16 12:54:37 by ybouddou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,12 +24,14 @@ SRC = Utils/ft_memset.c\
 	  Utils/get_next_line_utils.c\
 	  cub3d.c\
 	  func.c\
+	  functions.c\
 	  map_parsing.c\
 	  map_checker.c\
 	  parsing.c\
 	  errors.c\
 	  keys.c\
 	  drawing.c\
+	  spawning.c\
 	  sprite.c\
 	  bmp.c\
 	  
