@@ -2,15 +2,15 @@
 
 R 1920 1080
 
-NO texture/redbrick.png
+NO texture/redbrick.xpm
 
-SO texture/Wallsnk.png
+SO texture/Wallsnk.xpm
 
-WE texture/wood.png
+WE texture/wood.xpm
 
-EA texture/greystone.png
+EA texture/greystone.xpm
 
-S texture/barrel.png
+S texture/barrel.xpm
 
 F 215,180,120
 C 155,48,79

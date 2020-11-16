@@ -6,7 +6,7 @@
 #    By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 15:10:16 by ybouddou          #+#    #+#              #
-#    Updated: 2020/11/13 14:14:47 by ybouddou         ###   ########.fr        #
+#    Updated: 2020/11/16 10:00:40 by ybouddou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,15 @@ NAME = libcub3d.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = gnl/get_next_line.c\
-	  gnl/get_next_line_utils.c\
+SRC = Utils/ft_memset.c\
+	  Utils/ft_strncmp.c\
+	  Utils/ft_atoi.c\
+	  Utils/ft_split.c\
+	  Utils/ft_putchar_fd.c\
+	  Utils/ft_putstr_fd.c\
+	  Utils/get_next_line.c\
+	  Utils/get_next_line_utils.c\
+	  cub3d.c\
 	  func.c\
 	  map_parsing.c\
 	  map_checker.c\
@@ -32,7 +39,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@gcc cub3D.c Libft/libft.a $(OBJ) mlx/libmlx.a -lz -framework OpenGL -framework AppKit -I mlx
+	@gcc $(OBJ) -lmlx -framework OpenGL -framework AppKit
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $^ -o $@

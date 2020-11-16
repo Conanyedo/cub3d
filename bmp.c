@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 09:05:47 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/14 12:30:49 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/16 09:27:22 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void			bmp_save(t_cub3d *cub)
 	bmpinfoheader = (unsigned char *)malloc(40);
 	bmpfileheader = bmp_header(filesize);
 	bmpinfoheader = bmp_info(cub);
-	fd = open("save2.bmp", O_WRONLY | O_CREAT, 0666);
+	fd = open("save.bmp", O_WRONLY | O_CREAT, 0666);
 	write(fd, bmpfileheader, 14);
 	write(fd, bmpinfoheader, 40);
 	i = 0;

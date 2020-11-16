@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:47:27 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/14 12:35:03 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/16 10:01:00 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 # define CUB3D_H
 
 # include "mlx.h"
-# include "mlx/mlx_png.h"
+# include "Utils/utils.h"
 # include <math.h>
-# include "gnl/get_next_line.h"
-# include "Libft/libft.h"
 # include <fcntl.h>
 # include <stdio.h>
 
