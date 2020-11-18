@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 09:05:47 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/16 13:13:30 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/18 11:52:48 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void			bmp(t_cub3d *cub, int ac, char **av)
 				ft_free(cub->map);
 			error_msg("Error\nInvalid param");
 		}
+		exit(0);
 	}
 }
 

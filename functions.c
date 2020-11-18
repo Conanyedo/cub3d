@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 12:52:06 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/16 13:29:58 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/17 12:25:24 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	wallrendering(t_cub3d *cub)
 	cub->tex_y = (int)cub->texpos;
 	cub->texpos += cub->step;
 	if (cub->side == 0)
-		cub->color = cub->txt[2].img_data[cub->tex_x + cub->tex_y
-			* cub->txt[2].w];
+		cub->color = cub->txt[2].img_data[cub->tex_x + cub->tex_y *
+			cub->txt[2].w];
 	else if (cub->side == 1)
 		cub->color = cub->txt[3].img_data[cub->tex_x + cub->tex_y *
 			cub->txt[3].w];
@@ -67,26 +67,26 @@ void	wallrendering(t_cub3d *cub)
 	}
 }
 
-void	sprite_image(t_cub3d *cub)
+void	spritesort(t_cub3d *cub)
 {
-	cub->d = (cub->spriteline) * 256 - cub->res.h * 128 +
-		cub->spriteheight * 128;
-	cub->tex_y = ((cub->d * cub->texheight) / cub->spriteheight) / 256;
-	if (cub->txt[4].img_data[cub->tex_x + cub->tex_y * cub->txt[4].w])
+	t_sprite	tmp;
+	int			i;
+	int			j;
+
+	i = 0;
+	while (i < cub->sprite_num - 1)
 	{
-		cub->img.img_data[cub->spriteline * cub->res.w + cub->drawstartx] =
-			cub->txt[4].img_data[cub->tex_x + cub->tex_y * cub->txt[4].w];
-		if (cub->save == 1)
+		j = 0;
+		while (j < cub->sprite_num - i - 1)
 		{
-			cub->abrv = ((cub->drawendy - cub->bmp_pos) * cub->res.w +
-				cub->drawstartx);
-			cub->image[cub->abrv * 3 + 2] = cub->txt[4].img_data[cub->tex_x +
-				cub->tex_y * cub->txt[4].w] >> 16;
-			cub->image[cub->abrv * 3 + 1] = cub->txt[4].img_data[cub->tex_x +
-				cub->tex_y * cub->txt[4].w] >> 8;
-			cub->image[cub->abrv * 3 + 0] = cub->txt[4].img_data[cub->tex_x +
-				cub->tex_y * cub->txt[4].w];
+			if (cub->sprite[j].dist < cub->sprite[j + 1].dist)
+			{
+				tmp = cub->sprite[j];
+				cub->sprite[j] = cub->sprite[j + 1];
+				cub->sprite[j + 1] = tmp;
+			}
+			j++;
 		}
+		i++;
 	}
-	cub->bmp_pos++;
 }

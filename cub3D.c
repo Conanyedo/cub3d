@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 00:30:45 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/16 13:27:50 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/18 13:45:35 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ void	draw(t_cub3d *cub)
 	cub->img.img_ptr = mlx_new_image(cub->mlx.p, cub->res.w, cub->res.h);
 	cub->img.img_data = (int *)mlx_get_data_addr(cub->img.img_ptr,
 		&cub->img.bpp, &cub->img.size_line, &cub->img.endian);
+	cub->mini.img = mlx_new_image(cub->mlx.p, cub->mini.len, cub->mini.row);
+	cub->mini.img_data = (int *)mlx_get_data_addr(cub->mini.img,
+		&cub->mini.bpp, &cub->mini.size_line, &cub->mini.endian);
 	cub->ray = 0;
 	cub->texheight = 64;
 	cub->texwidth = 64;
@@ -30,13 +33,16 @@ void	draw(t_cub3d *cub)
 	}
 	if (cub->sprite_num)
 		sprite(cub);
+	minimap(cub);
 	cub->save = 0;
 	mlx_put_image_to_window(cub->mlx.p, cub->mlx.w, cub->img.img_ptr, 0, 0);
+	mlx_put_image_to_window(cub->mlx.p, cub->mlx.w, cub->mini.img, 0, 0);
 }
 
 int		deal_key(t_cub3d *cub)
 {
 	mlx_destroy_image(cub->mlx.p, cub->img.img_ptr);
+	mlx_destroy_image(cub->mlx.p, cub->mini.img);
 	mlx_clear_window(cub->mlx.p, cub->mlx.w);
 	moves_up_down(cub);
 	movesides(cub);
@@ -99,6 +105,7 @@ void	parsing(t_cub3d *cub)
 		map_errors(cub);
 	else
 		error_msg_free("ERROR\nMap not found", cub);
+	creat_mini(cub);
 }
 
 int		main(int ac, char **av)

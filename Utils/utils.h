@@ -6,12 +6,12 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:53:37 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/16 09:53:39 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/18 11:52:09 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef UTILS_H
+# define UTILS_H
 # define BUFFER_SIZE 1
 
 # include <stdlib.h>

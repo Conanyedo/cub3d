@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 13:26:43 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/16 13:27:50 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/16 17:00:17 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,5 @@ void			fc_checker(t_parse *parse, t_cub3d *cub)
 
 unsigned long	create_rgb(t_rgb *rgb)
 {
-	return ((rgb->r & 0xff) << 16) + ((rgb->g & 0xff) << 8) + (rgb->b & 0xff);
+	return ((rgb->r << 16) | (rgb->g << 8) | rgb->b);
 }

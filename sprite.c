@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 13:37:19 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/16 13:29:58 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/17 12:25:20 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,6 @@ void	spriteposition(t_cub3d *cub, int x)
 	cub->sprite[cub->sprite_n].y = cub->parse.y + 0.5;
 	cub->sprite_n++;
 	cub->parse.y++;
-}
-
-void	spritesort(t_cub3d *cub)
-{
-	t_sprite	tmp;
-	int			i;
-	int			j;
-
-	i = 0;
-	while (i < cub->sprite_num - 1)
-	{
-		j = 0;
-		while (j < cub->sprite_num - i - 1)
-		{
-			if (cub->sprite[j].dist < cub->sprite[j + 1].dist)
-			{
-				tmp = cub->sprite[j];
-				cub->sprite[j] = cub->sprite[j + 1];
-				cub->sprite[j + 1] = tmp;
-			}
-			j++;
-		}
-		i++;
-	}
 }
 
 void	spritedistance(t_cub3d *cub)
@@ -114,4 +90,28 @@ void	spriterendering(t_cub3d *cub)
 		}
 		cub->drawstartx++;
 	}
+}
+
+void	sprite_image(t_cub3d *cub)
+{
+	cub->d = (cub->spriteline) * 256 - cub->res.h * 128 +
+		cub->spriteheight * 128;
+	cub->tex_y = ((cub->d * cub->texheight) / cub->spriteheight) / 256;
+	if (cub->txt[4].img_data[cub->tex_x + cub->tex_y * cub->txt[4].w])
+	{
+		cub->img.img_data[cub->spriteline * cub->res.w + cub->drawstartx] =
+			cub->txt[4].img_data[cub->tex_x + cub->tex_y * cub->txt[4].w];
+		if (cub->save == 1)
+		{
+			cub->abrv = ((cub->drawendy - cub->bmp_pos) * cub->res.w +
+				cub->drawstartx);
+			cub->image[cub->abrv * 3 + 2] = cub->txt[4].img_data[cub->tex_x +
+				cub->tex_y * cub->txt[4].w] >> 16;
+			cub->image[cub->abrv * 3 + 1] = cub->txt[4].img_data[cub->tex_x +
+				cub->tex_y * cub->txt[4].w] >> 8;
+			cub->image[cub->abrv * 3 + 0] = cub->txt[4].img_data[cub->tex_x +
+				cub->tex_y * cub->txt[4].w];
+		}
+	}
+	cub->bmp_pos++;
 }

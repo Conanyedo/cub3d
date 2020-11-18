@@ -6,7 +6,7 @@
 #    By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 15:10:16 by ybouddou          #+#    #+#              #
-#    Updated: 2020/11/16 12:54:37 by ybouddou         ###   ########.fr        #
+#    Updated: 2020/11/17 12:40:14 by ybouddou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC = Utils/ft_memset.c\
 	  spawning.c\
 	  sprite.c\
 	  bmp.c\
+	  minimap.c\
 	  
 
 OBJ = $(SRC:.c=.o)

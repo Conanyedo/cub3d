@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:47:27 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/16 13:29:58 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/18 13:47:57 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,20 @@ typedef struct	s_img
 	int		h;
 }				t_img;
 
+typedef struct	s_mini
+{
+	void	*img;
+	int		*img_data;
+	int		bpp;
+	int		size_line;
+	int		endian;
+	int		x;
+	int		y;
+	int		len;
+	int		row;
+	int		scale;
+}				t_mini;
+
 typedef struct	s_rgb
 {
 	int		r;
@@ -110,16 +124,18 @@ typedef struct	s_cub3d
 	t_rgb		c;
 	t_parse		parse;
 	t_img		img;
+	t_mini		mini;
 	t_fd		fd;
-	t_img		txt[5];
+	t_img		txt[6];
 	t_sprite	*sprite;
 
+	size_t		len;
+	char		**mini_map;
 	char		*image;
 	int			save;
 	int			color;
 	int			bmp_pos;
 	int			abrv;
-
 	int			keyboard[300];
 	char		**map;
 	int			ray;
@@ -157,7 +173,6 @@ typedef struct	s_cub3d
 	int			tex_y;
 	double		step;
 	double		texpos;
-
 	int			sprite_num;
 	int			sprite_n;
 	double		*sprite_buf;
@@ -229,5 +244,10 @@ void			if_sprite(t_cub3d *cub);
 void			bmp(t_cub3d *cub, int ac, char **av);
 void			bmp_save(t_cub3d *cub);
 void			bmp_filling(t_cub3d *cub, t_rgb *fc);
+void			minimap(t_cub3d *cub);
+size_t			line_lenth(t_cub3d *cub, int i);
+void			creat_mini(t_cub3d *cub);
+void			bloc_color(t_cub3d *cub, int x, int y, int color);
+void			minimap_bloc(t_cub3d *cub, int i, int j);
 
 #endif

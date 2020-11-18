@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 12:21:09 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/16 13:21:28 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/18 12:28:42 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	spawning_ew(t_cub3d *cub)
 		cub->planex = 0.66;
 		cub->planey = 0;
 		cub->parse.spawn = 1;
-		cub->map[cub->parse.x][cub->parse.y] = '0';
 	}
 	else if (cub->map[cub->parse.x][cub->parse.y] == 'W')
 	{
@@ -48,8 +47,8 @@ void	spawning_ew(t_cub3d *cub)
 		cub->planex = -0.66;
 		cub->planey = 0;
 		cub->parse.spawn = 1;
-		cub->map[cub->parse.x][cub->parse.y] = '0';
 	}
+	cub->map[cub->parse.x][cub->parse.y] = '0';
 }
 
 void	spawning_ns(t_cub3d *cub)
@@ -63,7 +62,6 @@ void	spawning_ns(t_cub3d *cub)
 		cub->planex = 0;
 		cub->planey = 0.66;
 		cub->parse.spawn = 1;
-		cub->map[cub->parse.x][cub->parse.y] = '0';
 	}
 	else if (cub->map[cub->parse.x][cub->parse.y] == 'S')
 	{
@@ -74,8 +72,8 @@ void	spawning_ns(t_cub3d *cub)
 		cub->planex = 0;
 		cub->planey = -0.66;
 		cub->parse.spawn = 1;
-		cub->map[cub->parse.x][cub->parse.y] = '0';
 	}
+	cub->map[cub->parse.x][cub->parse.y] = '0';
 }
 
 int		character(t_cub3d *cub)
