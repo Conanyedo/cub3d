@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 00:30:45 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/18 13:45:35 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/19 14:01:02 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ void	draw(t_cub3d *cub)
 	cub->img.img_ptr = mlx_new_image(cub->mlx.p, cub->res.w, cub->res.h);
 	cub->img.img_data = (int *)mlx_get_data_addr(cub->img.img_ptr,
 		&cub->img.bpp, &cub->img.size_line, &cub->img.endian);
-	cub->mini.img = mlx_new_image(cub->mlx.p, cub->mini.len, cub->mini.row);
-	cub->mini.img_data = (int *)mlx_get_data_addr(cub->mini.img,
-		&cub->mini.bpp, &cub->mini.size_line, &cub->mini.endian);
 	cub->ray = 0;
 	cub->texheight = 64;
 	cub->texwidth = 64;
@@ -33,22 +30,26 @@ void	draw(t_cub3d *cub)
 	}
 	if (cub->sprite_num)
 		sprite(cub);
-	minimap(cub);
+	if (cub->mini.show)
+		minimap(cub);
 	cub->save = 0;
 	mlx_put_image_to_window(cub->mlx.p, cub->mlx.w, cub->img.img_ptr, 0, 0);
-	mlx_put_image_to_window(cub->mlx.p, cub->mlx.w, cub->mini.img, 0, 0);
 }
 
 int		deal_key(t_cub3d *cub)
 {
 	mlx_destroy_image(cub->mlx.p, cub->img.img_ptr);
-	mlx_destroy_image(cub->mlx.p, cub->mini.img);
 	mlx_clear_window(cub->mlx.p, cub->mlx.w);
 	moves_up_down(cub);
 	movesides(cub);
 	look(cub);
 	if (cub->keyboard[53])
 		key_close(cub);
+	if (cub->keyboard[46])
+	{
+		cub->mini.show = cub->mini.show == 1 ? 0 : 1;
+		cub->keyboard[46] = 0;
+	}
 	draw(cub);
 	return (0);
 }
@@ -79,6 +80,7 @@ void	texture(t_cub3d *cub)
 		&cub->txt[4].bpp, &cub->txt[4].size_line, &cub->txt[4].endian);
 	free_path(cub);
 	cub->image = (char *)malloc(cub->res.w * cub->res.h * 3);
+	system("afplay texture/Wolfenstein.mp3 &>/dev/null&");
 }
 
 void	parsing(t_cub3d *cub)

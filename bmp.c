@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 09:05:47 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/18 11:52:48 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/19 13:34:57 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,23 +79,27 @@ void			bmp_save(t_cub3d *cub)
 {
 	unsigned char	*bmpfileheader;
 	unsigned char	*bmpinfoheader;
-	int				filesize;
+	unsigned char	*bmppad;
 	int				fd;
-	int				i;
+	int				abrv;
 
-	filesize = 54 + 3 * cub->res.w * cub->res.h;
+	cub->bmp.pad = (4 - (cub->res.w * 3) % 4) % 4;
+	cub->bmp.filesize = 54 + cub->res.w * cub->res.h;
 	bmpfileheader = (unsigned char *)malloc(14);
 	bmpinfoheader = (unsigned char *)malloc(40);
-	bmpfileheader = bmp_header(filesize);
+	bmppad = (unsigned char *)malloc(3);
+	ft_memset(bmppad, 0, 3);
+	bmpfileheader = bmp_header(cub->bmp.filesize);
 	bmpinfoheader = bmp_info(cub);
 	fd = open("save.bmp", O_WRONLY | O_CREAT, 0666);
 	write(fd, bmpfileheader, 14);
 	write(fd, bmpinfoheader, 40);
-	i = 0;
-	while (i < cub->res.h)
+	cub->bmp.i = -1;
+	while (++cub->bmp.i < cub->res.h)
 	{
-		write(fd, cub->image + (i * cub->res.w * 3), cub->res.w * 3);
-		i++;
+		abrv = cub->bmp.i * cub->res.w * 3;
+		write(fd, cub->image + abrv, cub->res.w * 3);
+		write(fd, bmppad, cub->bmp.pad);
 	}
 	close(fd);
 }

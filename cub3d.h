@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:47:27 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/18 13:47:57 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/19 14:00:54 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,17 +87,33 @@ typedef struct	s_img
 
 typedef struct	s_mini
 {
-	void	*img;
-	int		*img_data;
-	int		bpp;
-	int		size_line;
-	int		endian;
 	int		x;
 	int		y;
 	int		len;
 	int		row;
 	int		scale;
+	int		show;
+	double	sz;
 }				t_mini;
+
+typedef struct	s_life
+{
+	int		x;
+	int		y;
+	int		len;
+	int		row;
+	int		scale;
+	int		show;
+	double	sz;
+}				t_life;
+
+typedef struct	s_bmp
+{
+	int			pad;
+	int			filesize;
+	int			fd;
+	int			i;
+}				t_bmp;
 
 typedef struct	s_rgb
 {
@@ -125,6 +141,8 @@ typedef struct	s_cub3d
 	t_parse		parse;
 	t_img		img;
 	t_mini		mini;
+	t_life		life;
+	t_bmp		bmp;
 	t_fd		fd;
 	t_img		txt[6];
 	t_sprite	*sprite;
