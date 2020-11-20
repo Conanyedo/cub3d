@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 09:05:47 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/19 13:34:57 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/20 10:33:54 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void			bmp(t_cub3d *cub, int ac, char **av)
 				ft_free(cub->map);
 			error_msg("Error\nInvalid param");
 		}
-		exit(0);
+		key_close(cub);
 	}
 }
 
@@ -50,7 +50,6 @@ unsigned char	*bmp_header(int filesize)
 	bmpfileheader[2] = (unsigned char)(filesize);
 	bmpfileheader[3] = (unsigned char)(filesize >> 8);
 	bmpfileheader[4] = (unsigned char)(filesize >> 16);
-	bmpfileheader[5] = (unsigned char)(filesize >> 24);
 	bmpfileheader[10] = (unsigned char)(54);
 	return (bmpfileheader);
 }
@@ -84,7 +83,7 @@ void			bmp_save(t_cub3d *cub)
 	int				abrv;
 
 	cub->bmp.pad = (4 - (cub->res.w * 3) % 4) % 4;
-	cub->bmp.filesize = 54 + cub->res.w * cub->res.h;
+	cub->bmp.filesize = 54 + cub->res.w * cub->res.h * 3;
 	bmpfileheader = (unsigned char *)malloc(14);
 	bmpinfoheader = (unsigned char *)malloc(40);
 	bmppad = (unsigned char *)malloc(3);

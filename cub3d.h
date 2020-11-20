@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:47:27 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/19 14:00:54 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/20 12:22:37 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef struct	s_path
 	char	*we;
 	char	*ea;
 	char	*s;
+	char	*f;
+	char	*c;
 }				t_path;
 
 typedef struct	s_parse
@@ -100,11 +102,9 @@ typedef struct	s_life
 {
 	int		x;
 	int		y;
-	int		len;
+	int		hearts;
 	int		row;
 	int		scale;
-	int		show;
-	double	sz;
 }				t_life;
 
 typedef struct	s_bmp
@@ -114,6 +114,28 @@ typedef struct	s_bmp
 	int			fd;
 	int			i;
 }				t_bmp;
+
+typedef struct	s_fc
+{
+	double		raydirx0;
+	double		raydiry0;
+	double		raydirx1;
+	double		raydiry1;
+	double		posz;
+	double		rowdistance;
+	double		floorStepx;
+	double		floorStepy;
+	double		floorx;
+	double		floory;
+	int			color;
+	int			cellx;
+	int			celly;
+	int			tx;
+	int			ty;
+	int			p;
+	int			exist;
+}				t_fc;
+
 
 typedef struct	s_rgb
 {
@@ -144,11 +166,13 @@ typedef struct	s_cub3d
 	t_life		life;
 	t_bmp		bmp;
 	t_fd		fd;
-	t_img		txt[6];
+	t_img		txt[7];
 	t_sprite	*sprite;
+	t_fc		fc;
 
 	size_t		len;
 	char		**mini_map;
+	char		**heart;
 	char		*image;
 	int			save;
 	int			color;
@@ -211,6 +235,7 @@ typedef struct	s_cub3d
 }				t_cub3d;
 
 void			init(t_cub3d *cub);
+void			init_mlx(t_cub3d *cub);
 void			ft_free(char **arr);
 void			checker(char **s, t_cub3d *cub);
 void			range(t_rgb *rgb, t_cub3d *cub);
@@ -267,5 +292,14 @@ size_t			line_lenth(t_cub3d *cub, int i);
 void			creat_mini(t_cub3d *cub);
 void			bloc_color(t_cub3d *cub, int x, int y, int color);
 void			minimap_bloc(t_cub3d *cub, int i, int j);
+void			floor_ceiling(t_cub3d *cub);
+void			fc_render(t_cub3d *cub);
+void			fc_calc(t_cub3d *cub, int y);
+void			fc_txt(t_cub3d *cub, int y);
+void			life_bar(t_cub3d *cub);
+void			bar_color(t_cub3d *cub, int x, int y, int color);
+void			lifebar_bloc(t_cub3d *cub, int i, int j);
+void			create_heart(t_cub3d *cub, int i);
+void			render_heart(t_cub3d *cub, int end, int j);
 
 #endif

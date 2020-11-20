@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:16:51 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/16 13:59:10 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/20 12:08:14 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,20 +117,9 @@ void	rendering(t_cub3d *cub)
 		cub->step;
 	while (cub->img.h < cub->res.h)
 	{
-		if (cub->img.h < cub->drawstart)
-		{
-			cub->img.img_data[cub->img.h * cub->res.w + cub->ray] =
-				create_rgb(&cub->c);
-			bmp_filling(cub, &cub->f);
-		}
+		fc_render(cub);
 		if (cub->img.h >= cub->drawstart && cub->img.h <= cub->drawend)
 			wallrendering(cub);
-		if (cub->img.h > cub->drawend)
-		{
-			cub->img.img_data[cub->img.h * cub->res.w + cub->ray] =
-				create_rgb(&cub->f);
-			bmp_filling(cub, &cub->c);
-		}
 		cub->img.h++;
 	}
 	if (cub->sprite_num)
