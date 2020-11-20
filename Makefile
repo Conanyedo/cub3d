@@ -6,7 +6,7 @@
 #    By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 15:10:16 by ybouddou          #+#    #+#              #
-#    Updated: 2020/11/20 11:58:47 by ybouddou         ###   ########.fr        #
+#    Updated: 2020/11/20 13:40:20 by ybouddou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,24 +34,13 @@ SRC = Utils/ft_memset.c\
 	  spawning.c\
 	  sprite.c\
 	  bmp.c\
-	  minimap.c\
-	  lifebar.c\
-	  floor_ceiling.c\
-	  
-# SRCb = lifebar.c\
-# 	   floor_ceiling.c\
 
 OBJ = $(SRC:.c=.o)
-
-# OBJb = $(SRCb:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@gcc $(OBJ) -lmlx -framework OpenGL -framework AppKit
-
-# bonus: all $(OBJb)
-# 	@gcc $(OBJ) $(OBJb) -lmlx -framework OpenGL -framework AppKit
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $^ -o $@

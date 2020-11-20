@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 00:30:45 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/20 12:22:52 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/20 13:38:38 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	draw(t_cub3d *cub)
 	cub->ray = 0;
 	cub->texheight = 64;
 	cub->texwidth = 64;
-	if (cub->fc.exist)
-		floor_ceiling(cub);
 	while (cub->ray < cub->res.w)
 	{
 		calc(cub);
@@ -32,9 +30,6 @@ void	draw(t_cub3d *cub)
 	}
 	if (cub->sprite_num)
 		sprite(cub);
-	if (cub->mini.show)
-		minimap(cub);
-	life_bar(cub);
 	cub->save = 0;
 	mlx_put_image_to_window(cub->mlx.p, cub->mlx.w, cub->img.img_ptr, 0, 0);
 }
@@ -48,29 +43,36 @@ int		deal_key(t_cub3d *cub)
 	look(cub);
 	if (cub->keyboard[53])
 		key_close(cub);
-	if (cub->keyboard[46])
-	{
-		cub->mini.show = cub->mini.show == 1 ? 0 : 1;
-		cub->keyboard[46] = 0;
-	}
 	draw(cub);
 	return (0);
 }
 
 void	texture(t_cub3d *cub)
 {
-	init_mlx(cub);
-	cub->txt[5].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, "texture/wood.xpm",
-		&cub->txt[5].w, &cub->txt[5].h);
-	cub->txt[5].img_data = (int*)mlx_get_data_addr(cub->txt[5].img_ptr,
-		&cub->txt[5].bpp, &cub->txt[5].size_line, &cub->txt[5].endian);
-	cub->txt[6].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, "texture/mossy.xpm",
-		&cub->txt[6].w, &cub->txt[6].h);
-	cub->txt[6].img_data = (int*)mlx_get_data_addr(cub->txt[6].img_ptr,
-		&cub->txt[6].bpp, &cub->txt[6].size_line, &cub->txt[6].endian);
+	cub->mlx.p = mlx_init();
+	cub->mlx.w = mlx_new_window(cub->mlx.p, cub->res.w, cub->res.h, "cub3d");
+	cub->txt[0].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.no,
+		&cub->txt[0].w, &cub->txt[0].h);
+	cub->txt[0].img_data = (int*)mlx_get_data_addr(cub->txt[0].img_ptr,
+		&cub->txt[0].bpp, &cub->txt[0].size_line, &cub->txt[0].endian);
+	cub->txt[1].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.we,
+		&cub->txt[1].w, &cub->txt[1].h);
+	cub->txt[1].img_data = (int*)mlx_get_data_addr(cub->txt[1].img_ptr,
+		&cub->txt[1].bpp, &cub->txt[1].size_line, &cub->txt[1].endian);
+	cub->txt[2].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.so,
+		&cub->txt[2].w, &cub->txt[2].h);
+	cub->txt[2].img_data = (int*)mlx_get_data_addr(cub->txt[2].img_ptr,
+		&cub->txt[2].bpp, &cub->txt[2].size_line, &cub->txt[2].endian);
+	cub->txt[3].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.ea,
+		&cub->txt[3].w, &cub->txt[3].h);
+	cub->txt[3].img_data = (int*)mlx_get_data_addr(cub->txt[3].img_ptr,
+		&cub->txt[3].bpp, &cub->txt[3].size_line, &cub->txt[3].endian);
+	cub->txt[4].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.s,
+		&cub->txt[4].w, &cub->txt[4].h);
+	cub->txt[4].img_data = (int*)mlx_get_data_addr(cub->txt[4].img_ptr,
+		&cub->txt[4].bpp, &cub->txt[4].size_line, &cub->txt[4].endian);
 	free_path(cub);
 	cub->image = (char *)malloc(cub->res.w * cub->res.h * 3);
-	system("afplay texture/Wolfenstein.mp3 &>/dev/null&");
 }
 
 void	parsing(t_cub3d *cub)
@@ -97,7 +99,6 @@ void	parsing(t_cub3d *cub)
 		map_errors(cub);
 	else
 		error_msg_free("ERROR\nMap not found", cub);
-	creat_mini(cub);
 }
 
 int		main(int ac, char **av)

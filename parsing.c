@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:01:50 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/20 12:23:39 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/20 13:41:45 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	fc_color(t_rgb *fc, t_parse *parse, int *rep, t_cub3d *cub)
 	ft_free(parse->colors);
 	range(fc, cub);
 	*rep = 1;
-	cub->fc.exist = 0;
 	printf("F/C |r : %d | g : %d | g : %d|\n", fc->r, fc->g, fc->b);
 }
 

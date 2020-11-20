@@ -6,13 +6,13 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 13:26:43 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/20 12:21:57 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/20 13:52:41 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void			init(t_cub3d *cub)
+void	init(t_cub3d *cub)
 {
 	cub->rotatespeed = 0.03;
 	cub->movespeed = 0.15;
@@ -40,33 +40,7 @@ void			init(t_cub3d *cub)
 	cub->save = 1;
 }
 
-void			init_mlx(t_cub3d *cub)
-{
-	cub->mlx.p = mlx_init();
-	cub->mlx.w = mlx_new_window(cub->mlx.p, cub->res.w, cub->res.h, "cub3d");
-	cub->txt[0].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.no,
-		&cub->txt[0].w, &cub->txt[0].h);
-	cub->txt[0].img_data = (int*)mlx_get_data_addr(cub->txt[0].img_ptr,
-		&cub->txt[0].bpp, &cub->txt[0].size_line, &cub->txt[0].endian);
-	cub->txt[1].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.we,
-		&cub->txt[1].w, &cub->txt[1].h);
-	cub->txt[1].img_data = (int*)mlx_get_data_addr(cub->txt[1].img_ptr,
-		&cub->txt[1].bpp, &cub->txt[1].size_line, &cub->txt[1].endian);
-	cub->txt[2].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.so,
-		&cub->txt[2].w, &cub->txt[2].h);
-	cub->txt[2].img_data = (int*)mlx_get_data_addr(cub->txt[2].img_ptr,
-		&cub->txt[2].bpp, &cub->txt[2].size_line, &cub->txt[2].endian);
-	cub->txt[3].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.ea,
-		&cub->txt[3].w, &cub->txt[3].h);
-	cub->txt[3].img_data = (int*)mlx_get_data_addr(cub->txt[3].img_ptr,
-		&cub->txt[3].bpp, &cub->txt[3].size_line, &cub->txt[3].endian);
-	cub->txt[4].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.s,
-		&cub->txt[4].w, &cub->txt[4].h);
-	cub->txt[4].img_data = (int*)mlx_get_data_addr(cub->txt[4].img_ptr,
-		&cub->txt[4].bpp, &cub->txt[4].size_line, &cub->txt[4].endian);
-}
-
-void			checker(char **s, t_cub3d *cub)
+void	checker(char **s, t_cub3d *cub)
 {
 	int	i;
 	int	j;
@@ -87,14 +61,14 @@ void			checker(char **s, t_cub3d *cub)
 	}
 }
 
-void			range(t_rgb *rgb, t_cub3d *cub)
+void	range(t_rgb *rgb, t_cub3d *cub)
 {
 	if (rgb->r > 255 || rgb->r < 0 || rgb->g > 255 || rgb->g < 0 ||
 		rgb->b > 255 || rgb->b < 0)
 		error_msg_free("Error\nRange is false\n", cub);
 }
 
-void			fc_checker(t_parse *parse, t_cub3d *cub)
+void	fc_checker(t_parse *parse, t_cub3d *cub)
 {
 	int	comma;
 	int	i;
@@ -113,7 +87,10 @@ void			fc_checker(t_parse *parse, t_cub3d *cub)
 		error_free("Error\nWrong format of rgb\n", cub, parse->splitted);
 }
 
-unsigned long	create_rgb(t_rgb *rgb)
+int		create_rgb(t_rgb *rgb)
 {
-	return ((rgb->r << 16) | (rgb->g << 8) | rgb->b);
+	int		color;
+
+	color = (rgb->r << 16) | (rgb->g << 8) | rgb->b;
+	return (color);
 }

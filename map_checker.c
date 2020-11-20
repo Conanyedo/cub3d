@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 13:39:49 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/18 11:54:07 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/20 13:41:05 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,9 @@ void	map_errors(t_cub3d *cub)
 	while (cub->map[--cub->parse.x][0] == '\0')
 		cub->map[cub->parse.x] = NULL;
 	last_line(cub);
-	cub->len = 0;
 	while (++i < cub->parse.x)
 	{
 		cub->parse.y = 0;
-		cub->len = line_lenth(cub, i);
 		while (cub->map[i][cub->parse.y])
 		{
 			map_check_next(cub, i);
