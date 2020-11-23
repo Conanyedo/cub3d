@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parsing.c                                      :+:      :+:    :+:   */
+/*   map_parsing_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 08:33:16 by root              #+#    #+#             */
-/*   Updated: 2020/11/21 14:38:22 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/23 16:38:42 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	map_checker(t_cub3d *cub)
 {
@@ -28,7 +28,7 @@ void	map_checker(t_cub3d *cub)
 				cub->map[cub->parse.x][cub->parse.y] == 'S' ||
 				cub->map[cub->parse.x][cub->parse.y] == 'W' ||
 				cub->map[cub->parse.x][cub->parse.y] == 'E' ||
-				cub->map[cub->parse.x][cub->parse.y] == '2')
+				character(cub, cub->parse.x) == 3)
 			cub->parse.y++;
 		else if (cub->map[cub->parse.x][cub->parse.y] == '0')
 			zero(cub);
@@ -46,16 +46,16 @@ void	map(t_cub3d *cub)
 	cub->parse.y = 0;
 	while (cub->map[cub->parse.x][cub->parse.y])
 	{
-		if (cub->parse.spawn == 0 && character(cub) == 1)
+		if (cub->parse.spawn == 0 && character(cub, cub->parse.x) == 1)
 			spawning(cub);
-		else if (cub->map[cub->parse.x][cub->parse.y] == '2' &&
-				!cub->map[cub->parse.x][cub->parse.y + 1])
+		else if ((character(cub, cub->parse.x) == 3) &&
+			!cub->map[cub->parse.x][cub->parse.y + 1])
 			error_msg_free("ERROR\nSprite position invalid", cub);
-		else if (cub->map[cub->parse.x][cub->parse.y] == '2')
+		else if (character(cub, cub->parse.x) == 3)
 			cub->sprite_num++;
-		else if (cub->parse.spawn == 1 && character(cub) == 1)
+		else if (cub->parse.spawn == 1 && character(cub, cub->parse.x) == 1)
 			error_msg_free("ERROR\nSpawning position repeated or invalid", cub);
-		else if (character(cub) == 0)
+		else if (character(cub, cub->parse.x) == 0)
 			error_msg_free("ERROR\nInvalid char in the map", cub);
 		cub->parse.y++;
 	}

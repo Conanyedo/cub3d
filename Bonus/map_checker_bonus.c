@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_checker.c                                      :+:      :+:    :+:   */
+/*   map_checker_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 13:39:49 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/20 14:27:15 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/23 16:39:10 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	last_line(t_cub3d *cub)
 {
@@ -64,7 +64,7 @@ void	map_errors(t_cub3d *cub)
 			map_check_next(cub, i);
 			if (cub->map[i][cub->parse.y] == '1')
 				cub->parse.y++;
-			else if (cub->map[i][cub->parse.y] == '2')
+			else if (character(cub, i) == 3)
 				spriteposition(cub, i);
 			else
 				cub->parse.y++;
