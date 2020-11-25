@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:47:27 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 10:48:06 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 13:50:25 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,16 @@ typedef struct	s_weapon
 	int		fire;
 }				t_weapon;
 
+typedef struct	s_fire
+{
+	int		x;
+	int		y;
+	int		len;
+	int		row;
+	t_scale	scale;
+	int		fire;
+}				t_fire;
+
 typedef struct	s_bullet
 {
 	int		x;
@@ -193,6 +203,7 @@ typedef struct	s_cub3d
 	t_mini		mini;
 	t_life		life;
 	t_weapon	weapon;
+	t_fire		fire;
 	t_bullet	bullet;
 	t_bmp		bmp;
 	t_fd		fd;
@@ -204,6 +215,7 @@ typedef struct	s_cub3d
 	char		**mini_map;
 	char		**heart;
 	char		**weapons;
+	char		**shot;
 	char		**bullets;
 	char		*image;
 	int			ac;
@@ -289,6 +301,7 @@ void			error_msg_free(char *s, t_cub3d *cub);
 void			error_free(char *s, t_cub3d *cub, char **tofree);
 void			error_msg(char *s);
 void			free_path(t_cub3d *cub);
+void			free_all(t_cub3d *cub);
 void			fc_color(t_rgb *fc, t_parse *parse, int *rep, t_cub3d *cub);
 void			fc_checker(t_parse *parse, t_cub3d *cub);
 void			path(char **path, t_cub3d *cub, int *fd, int *rep);
@@ -335,7 +348,7 @@ void			create_heart(t_cub3d *cub, int i);
 void			render_heart(t_cub3d *cub, int end, int j);
 void			weapon(t_cub3d *cub);
 void			weapon_color(t_cub3d *cub, int i, int j);
-void			create_weapon(t_cub3d *cub);
+void			create_weapon(t_cub3d *cub, int i);
 void			fire(t_cub3d *cub);
 void			create_fire(t_cub3d *cub, int i);
 void			bullets(t_cub3d *cub);

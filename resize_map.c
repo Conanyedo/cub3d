@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 14:33:58 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 10:47:00 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 13:49:01 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,13 @@ int		line_lenth(t_cub3d *cub, int i)
 		cub->len = tmp;
 	}
 	return (cub->len);
+}
+
+void	free_all(t_cub3d *cub)
+{
+	ft_free(cub->map);
+	ft_free(cub->tmp);
+	ft_free(cub->mini_map);
+	free(cub->sprite_buf);
+	free(cub->sprite);
 }

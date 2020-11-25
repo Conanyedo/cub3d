@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 13:32:21 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/23 18:37:20 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 14:31:34 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 void	bonus(t_cub3d *cub)
 {
-	if (cub->mini.show)
-		minimap(cub);
-	life_bar(cub);
-	if (cub->weapon.fire)
-		fire(cub);
-	else
-		weapon(cub);
-	bullets(cub);
+	(void)cub;
+	// if (cub->mini.show)
+	// 	minimap(cub);
+	// life_bar(cub);
+	// if (cub->weapon.fire)
+	// 	fire(cub);
+	// else
+	// 	weapon(cub);
+	// bullets(cub);
 }
 
 void	fire_bullets(t_cub3d *cub)

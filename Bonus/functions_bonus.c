@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 12:52:06 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 10:49:15 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 13:45:29 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	free_path(t_cub3d *cub)
 	free(cub->path.ea);
 	free(cub->path.we);
 	free(cub->path.s);
+	free(cub->path.f);
+	free(cub->path.c);
 }
 
 void	wallrendering(t_cub3d *cub)

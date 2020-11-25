@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 00:30:45 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 11:01:35 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 14:42:41 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	parsing(t_cub3d *cub)
 			map(cub);
 		else if (*cub->parse.line)
 			error_msg_free("Error\nWrong info\n", cub);
+		free(cub->parse.line);
 	}
 	if_sprite(cub);
 	if (cub->parse.x)
@@ -139,11 +140,7 @@ int		main(int ac, char **av)
 		mlx_hook(cub.mlx.w, 17, 0, key_close, &cub);
 		mlx_loop_hook(cub.mlx.p, deal_key, &cub);
 		mlx_loop(cub.mlx.p);
-		ft_free(cub.map);
-		ft_free(cub.tmp);
-		ft_free(cub.mini_map);
-		free(cub.sprite_buf);
-		free(cub.sprite);
+		// free_all(&cub);
 	}
 	else
 		error_msg("Error\nInvalid params");

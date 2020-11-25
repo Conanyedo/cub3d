@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 09:11:45 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 10:51:01 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 13:50:43 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ void	life_bar(t_cub3d *cub)
 	cub->life.row = 17 * cub->life.scale.y;
 	cub->life.len = 18 * cub->life.scale.x;
 	cub->life.x = cub->res.w - (cub->life.len * 4);
-	create_heart(cub, hearts);
 	while (++hearts < cub->life.hearts)
 	{
 		j = 0;

@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 22:13:28 by root              #+#    #+#             */
-/*   Updated: 2020/11/23 18:40:13 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 13:51:12 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,8 @@ void	complete_weapon(t_cub3d *cub)
 	cub->weapons[20] = "12211334554312211134";
 }
 
-void	create_weapon(t_cub3d *cub)
+void	create_weapon(t_cub3d *cub, int i)
 {
-	int		i;
-
-	i = -1;
 	cub->weapons = (char **)malloc(sizeof(char *) * 21 + 1);
 	cub->weapons[21] = NULL;
 	while (cub->weapons[++i])
@@ -105,7 +102,6 @@ void	weapon(t_cub3d *cub)
 	int		i;
 	int		end;
 
-	create_weapon(cub);
 	cub->weapon.scale.x = cub->res.w / 5 / 20;
 	cub->weapon.scale.y = cub->res.h / 3 / 21;
 	cub->weapon.row = 21 * cub->weapon.scale.y;

@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 00:30:45 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 10:49:02 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 14:49:13 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	draw(t_cub3d *cub)
 	cub->texwidth = 64;
 	cub->rotatespeed = 0.03;
 	cub->movespeed = 0.15;
-	floor_ceiling(cub);
+	// floor_ceiling(cub);
 	while (cub->ray < cub->res.w)
 	{
 		calc(cub);
@@ -33,7 +33,7 @@ void	draw(t_cub3d *cub)
 	}
 	if (cub->sprite_num)
 		sprite(cub);
-	bonus(cub);
+	// bonus(cub);
 	mlx_put_image_to_window(cub->mlx.p, cub->mlx.w, cub->img.img_ptr, 0, 0);
 }
 
@@ -47,7 +47,7 @@ int		deal_key(t_cub3d *cub)
 	look(cub);
 	if (cub->keyboard[53])
 		key_close(cub);
-	bonus_keys(cub);
+	// bonus_keys(cub);
 	draw(cub);
 	return (0);
 }
@@ -64,6 +64,11 @@ void	texture(t_cub3d *cub)
 	free_path(cub);
 	if (cub->ac == 3)
 		cub->image = (char *)malloc(cub->res.w * cub->res.h * 3);
+	i = -1;
+	// create_weapon(cub, i);
+	// create_fire(cub, i);
+	// create_bullet(cub, i);
+	// create_heart(cub, i);
 	cub->bullet.bullets = 5;
 	system("afplay texture/Wolfenstein.mp3 &>/dev/null&");
 }
@@ -86,6 +91,7 @@ void	parsing(t_cub3d *cub)
 			map(cub);
 		else if (*cub->parse.line)
 			error_msg_free("Error\nWrong info\n", cub);
+		free(cub->parse.line);
 	}
 	if_sprite(cub);
 	if (cub->parse.x)
@@ -115,7 +121,7 @@ int		main(int ac, char **av)
 		mlx_hook(cub.mlx.w, 17, 0, key_close, &cub);
 		mlx_loop_hook(cub.mlx.p, deal_key, &cub);
 		mlx_loop(cub.mlx.p);
-		ft_free(cub.map);
+		// free_all(&cub);
 	}
 	else
 		error_msg("Error\nInvalid params");

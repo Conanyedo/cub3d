@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:08:52 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 10:21:43 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 13:35:44 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	exist(t_cub3d *cub)
 	if (cub->parse.x == 0)
 	{
 		cub->map = (char**)malloc(2 * sizeof(char*));
-		cub->map[0] = cub->parse.line;
+		cub->map[0] = ft_strdup(cub->parse.line);
 		cub->map[1] = NULL;
 	}
 	else
@@ -77,5 +77,6 @@ void	ft_free(char **arr)
 		arr[i] = NULL;
 		i++;
 	}
+	free(arr);
 	arr = NULL;
 }

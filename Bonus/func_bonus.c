@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 13:26:43 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 10:31:36 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 14:34:47 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ void			init(t_cub3d *cub)
 	cub->path.f = NULL;
 	cub->path.c = NULL;
 	cub->map = NULL;
+	cub->bullets = NULL;
+	cub->heart = NULL;
+	cub->weapons = NULL;
+	cub->shot = NULL;
 	cub->parse.x = 0;
 	cub->parse.spawn = 0;
 	cub->parse.line = NULL;

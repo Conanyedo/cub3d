@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:01:50 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 10:28:17 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 13:05:32 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	resolution(t_cub3d *cub)
 	cub->res.h = cub->res.h < 360 ? 360 : cub->res.h;
 	ft_free(cub->parse.splitted);
 	cub->rep.res = 1;
-	free(cub->parse.line);
 }
 
 void	path(char **path, t_cub3d *cub, int *fd, int *rep)
@@ -78,5 +77,4 @@ void	identifier(t_cub3d *cub)
 		path(&cub->path.f, cub, &cub->fd.f, &cub->rep.f);
 	else if (*cub->parse.line == 'C' && *(cub->parse.line + 1) == ' ')
 		path(&cub->path.c, cub, &cub->fd.c, &cub->rep.c);
-	free(cub->parse.line);
 }

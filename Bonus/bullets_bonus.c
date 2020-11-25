@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 11:54:03 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/23 18:30:16 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 13:51:28 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void	bullets(t_cub3d *cub)
 	if (cub->bullet.bullets)
 	{
 		bullets = -1;
-		create_bullet(cub, bullets);
 		cub->bullet.scale.x = cub->res.w * 3 / 100 / 13;
 		cub->bullet.scale.y = cub->res.h / 10 / 22;
 		cub->bullet.row = 22 * cub->bullet.scale.y;
