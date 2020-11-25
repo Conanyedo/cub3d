@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 12:23:00 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/23 18:46:15 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 09:37:15 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ void	create_mini(t_cub3d *cub)
 	len = cub->mini.mini_len;
 	cub->mini.scale.x = cub->res.w / 5 / (cub->len - len);
 	cub->mini.scale.y = cub->res.h / 5 / (cub->parse.x - row);
+	cub->mini.scale.x = cub->mini.scale.x <= 2 ? 3 : cub->mini.scale.x;
+	cub->mini.scale.y = cub->mini.scale.y <= 2 ? 3 : cub->mini.scale.y;
+	// printf("%d | %d | %s\n", cub->mini.scale.x, cub->mini.scale.y, cub->map[0]);
 	cub->mini.len = (cub->len - len) * cub->mini.scale.x;
 	cub->mini.row = (cub->parse.x - row) * cub->mini.scale.y;
 	fill_min(cub, row, len);

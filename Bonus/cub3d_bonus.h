@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:47:27 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/23 18:57:30 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 09:17:56 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,7 +269,7 @@ typedef struct	s_cub3d
 void			init(t_cub3d *cub);
 void			init_mlx(t_cub3d *cub);
 void			ft_free(char **arr);
-void			checker(char **s, t_cub3d *cub);
+void			checker(char **s, t_cub3d *cub, int i);
 void			range(t_rgb *rgb, t_cub3d *cub);
 int				key_pressed(int key, t_cub3d *cub);
 int				key_released(int key, t_cub3d *cub);

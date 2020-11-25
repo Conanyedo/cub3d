@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:16:51 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/20 13:43:14 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/24 10:59:45 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	wall(t_cub3d *cub)
 	cub->drawstart = (-cub->lineheight / 2) + (cub->res.h / 2);
 	if (cub->drawstart < 0)
 		cub->drawstart = 0;
-	cub->drawend = cub->lineheight / 2 + cub->res.h / 2;
+	cub->drawend = cub->lineheight / 2 + (cub->res.h / 2);
 	if (cub->drawend >= cub->res.h)
 		cub->drawend = cub->res.h - 1;
 	if (cub->side == 0 || cub->side == 2)

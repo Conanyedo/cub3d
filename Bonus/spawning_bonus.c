@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 12:21:09 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/23 17:21:11 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/24 12:34:39 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	spawning(t_cub3d *cub)
 {
-	cub->posx = cub->parse.x + 0.1;
-	cub->posy = cub->parse.y + 0.1;
+	cub->posx = cub->parse.x + 0.5;
+	cub->posy = cub->parse.y + 0.5;
 	if (!cub->map[cub->parse.x][cub->parse.y + 1] ||
 			cub->map[cub->parse.x - 1][cub->parse.y] == ' ' ||
 			cub->map[cub->parse.x - 1][cub->parse.y] == '\0')

@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:01:50 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/23 17:43:32 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 09:17:45 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,16 @@ void	resolution(t_cub3d *cub)
 {
 	if (cub->rep.res == 1)
 		error_msg_free("ERROR\nRepetition of res", cub);
-	cub->parse.line++;
-	if (*cub->parse.line != ' ')
+	if (cub->parse.line[1] != ' ')
 		error_msg_free("ERROR\nAnother char found after R", cub);
 	cub->parse.splitted = ft_split(cub->parse.line, ' ');
-	if (cub->parse.splitted[2] || !cub->parse.splitted[1])
+	if (cub->parse.splitted[3] || !cub->parse.splitted[2])
 		error_free("ERROR\nR must have only 2 param", cub, cub->parse.splitted);
-	checker(cub->parse.splitted, cub);
-	cub->res.w = ft_atoi(cub->parse.splitted[0]);
+	checker(cub->parse.splitted, cub, 1);
+	cub->res.w = ft_atoi(cub->parse.splitted[1]);
 	cub->res.w = (cub->res.w > 2560) ? 2560 : cub->res.w;
 	cub->res.w = cub->res.w < 640 ? 640 : cub->res.w;
-	cub->res.h = ft_atoi(cub->parse.splitted[1]);
+	cub->res.h = ft_atoi(cub->parse.splitted[2]);
 	cub->res.h = (cub->res.h > 1440) ? 1440 : cub->res.h;
 	cub->res.h = cub->res.h < 360 ? 360 : cub->res.h;
 	ft_free(cub->parse.splitted);

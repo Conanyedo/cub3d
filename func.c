@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 13:26:43 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/20 13:52:41 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/24 12:42:10 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	init(t_cub3d *cub)
 {
-	cub->rotatespeed = 0.03;
-	cub->movespeed = 0.15;
 	cub->path.no = NULL;
 	cub->path.so = NULL;
 	cub->path.we = NULL;
@@ -38,14 +36,14 @@ void	init(t_cub3d *cub)
 	cub->sprite_num = 0;
 	cub->sprite_n = 0;
 	cub->save = 1;
+	cub->half_height = 0;
+	cub->view = 10;
 }
 
-void	checker(char **s, t_cub3d *cub)
+void	checker(char **s, t_cub3d *cub, int i)
 {
-	int	i;
 	int	j;
 
-	i = 0;
 	while (s[i])
 	{
 		j = 0;

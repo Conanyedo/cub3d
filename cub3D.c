@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.c                                            :+:      :+:    :+:   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 00:30:45 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/21 14:42:53 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/24 13:00:01 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	draw(t_cub3d *cub)
 	cub->ray = 0;
 	cub->texheight = 64;
 	cub->texwidth = 64;
+	cub->rotatespeed = 0.03;
+	cub->movespeed = 0.15;
 	while (cub->ray < cub->res.w)
 	{
 		calc(cub);
@@ -49,6 +51,14 @@ int		deal_key(t_cub3d *cub)
 	{
 		cub->mini.show = cub->mini.show == 1 ? 0 : 1;
 		cub->keyboard[46] = 0;
+	}
+	if (cub->keyboard[126])
+	{
+		cub->half_height += cub->view;
+	}
+	if (cub->keyboard[125])
+	{
+		cub->half_height -= cub->view;
 	}
 	draw(cub);
 	return (0);
@@ -100,6 +110,7 @@ void	parsing(t_cub3d *cub)
 			map(cub);
 		else if (*cub->parse.line)
 			error_msg_free("Error\nWrong info\n", cub);
+		free(cub->parse.line);
 	}
 	if_sprite(cub);
 	if (cub->parse.x)
@@ -128,6 +139,7 @@ int		main(int ac, char **av)
 		mlx_hook(cub.mlx.w, 17, 0, key_close, &cub);
 		mlx_loop_hook(cub.mlx.p, deal_key, &cub);
 		mlx_loop(cub.mlx.p);
+		ft_free(cub.map);
 	}
 	else
 		error_msg("Error\nInvalid params");

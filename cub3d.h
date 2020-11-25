@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:47:27 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/23 18:48:45 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/24 12:50:58 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,8 @@ typedef struct	s_cub3d
 	t_sprite	*sprite;
 	t_mini		mini;
 
+	int			view;
+	int			half_height;
 	char		**mini_map;
 	char		*image;
 	int			save;
@@ -151,6 +153,7 @@ typedef struct	s_cub3d
 	int			abrv;
 	int			keyboard[300];
 	char		**map;
+	char		**tmp;
 	int			ray;
 	int			mapx;
 	int			mapy;
@@ -207,7 +210,7 @@ typedef struct	s_cub3d
 
 void			init(t_cub3d *cub);
 void			ft_free(char **arr);
-void			checker(char **s, t_cub3d *cub);
+void			checker(char **s, t_cub3d *cub, int i);
 void			range(t_rgb *rgb, t_cub3d *cub);
 int				key_pressed(int key, t_cub3d *cub);
 int				key_released(int key, t_cub3d *cub);
@@ -221,7 +224,7 @@ void			map(t_cub3d *cub);
 void			map_checker(t_cub3d *cub);
 void			map_errors(t_cub3d *cub);
 void			map_check_next(t_cub3d *cub, int i);
-char			**push(t_cub3d *cub);
+void			push(t_cub3d *cub);
 void			exist(t_cub3d *cub);
 void			error_msg_free(char *s, t_cub3d *cub);
 void			error_free(char *s, t_cub3d *cub, char **tofree);
