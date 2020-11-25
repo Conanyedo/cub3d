@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 08:33:16 by root              #+#    #+#             */
-/*   Updated: 2020/11/23 16:38:42 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 10:30:24 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,8 @@ void	map(t_cub3d *cub)
 	cub->parse.x++;
 }
 
-char	**push(t_cub3d *cub)
+void	push(t_cub3d *cub)
 {
-	char	**tmp;
 	int		count;
 	int		i;
 
@@ -72,15 +71,19 @@ char	**push(t_cub3d *cub)
 	count = 0;
 	while (cub->map[count])
 		count++;
-	tmp = malloc((count + 2) * sizeof(char*));
+	cub->tmp = malloc((count + 2) * sizeof(char*));
 	while (i < count)
 	{
-		tmp[i] = ft_strdup(cub->map[i]);
+		cub->tmp[i] = ft_strdup(cub->map[i]);
+		free(cub->map[i]);
 		i++;
 	}
-	tmp[i] = ft_strdup(cub->parse.line);
-	tmp[i + 1] = NULL;
-	return (tmp);
+	cub->tmp[i] = ft_strdup(cub->parse.line);
+	cub->tmp[i + 1] = NULL;
+	free(cub->parse.line);
+	cub->map = cub->tmp;
+	cub->tmp = NULL;
+	// ft_free(cub->tmp);
 }
 
 void	space(t_cub3d *cub)

@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 00:30:45 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/24 13:00:01 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 11:01:35 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	draw(t_cub3d *cub)
 		sprite(cub);
 	if (cub->mini.show)
 		minimap(cub);
-	cub->save = 0;
 	mlx_put_image_to_window(cub->mlx.p, cub->mlx.w, cub->img.img_ptr, 0, 0);
 }
 
@@ -89,7 +88,8 @@ void	texture(t_cub3d *cub)
 	cub->txt[4].img_data = (int*)mlx_get_data_addr(cub->txt[4].img_ptr,
 		&cub->txt[4].bpp, &cub->txt[4].size_line, &cub->txt[4].endian);
 	free_path(cub);
-	cub->image = (char *)malloc(cub->res.w * cub->res.h * 3);
+	if (cub->ac == 3)
+		cub->image = (char *)malloc(cub->res.w * cub->res.h * 3);
 }
 
 void	parsing(t_cub3d *cub)
@@ -110,7 +110,6 @@ void	parsing(t_cub3d *cub)
 			map(cub);
 		else if (*cub->parse.line)
 			error_msg_free("Error\nWrong info\n", cub);
-		free(cub->parse.line);
 	}
 	if_sprite(cub);
 	if (cub->parse.x)
@@ -126,6 +125,7 @@ int		main(int ac, char **av)
 
 	if (ac >= 2 && ac <= 3)
 	{
+		cub.ac = ac;
 		cub.fd.lines = open(av[1], O_RDONLY);
 		if (cub.fd.lines < 0)
 			error_msg("Error\nInvalid file");
@@ -140,6 +140,10 @@ int		main(int ac, char **av)
 		mlx_loop_hook(cub.mlx.p, deal_key, &cub);
 		mlx_loop(cub.mlx.p);
 		ft_free(cub.map);
+		ft_free(cub.tmp);
+		ft_free(cub.mini_map);
+		free(cub.sprite_buf);
+		free(cub.sprite);
 	}
 	else
 		error_msg("Error\nInvalid params");

@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 14:33:58 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/23 18:47:20 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 10:47:00 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	create_pixel(t_cub3d *cub, int x, int y, t_scale scale)
 		while (j < scale.x)
 		{
 			cub->img.img_data[((i + y) * cub->res.w + (j + x))] = cub->color;
-			if (cub->save == 1)
+			if (cub->ac == 3)
 			{
 				abrv = cub->res.h - scale.y;
 				cub->abrv = ((i + (abrv - y)) * cub->res.w + (j + (x)));

@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 13:26:43 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/23 17:44:41 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 10:31:36 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,10 @@ void			init_mlx(t_cub3d *cub)
 		&cub->txt[6].w, &cub->txt[6].h);
 }
 
-void			checker(char **s, t_cub3d *cub)
+void			checker(char **s, t_cub3d *cub, int i)
 {
-	int	i;
 	int	j;
 
-	i = 0;
 	while (s[i])
 	{
 		j = 0;

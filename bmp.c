@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 09:05:47 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/20 10:33:54 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 10:40:41 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void			bmp(t_cub3d *cub, int ac, char **av)
 				ft_free(cub->map);
 			error_msg("Error\nInvalid param");
 		}
+		free(cub->image);
 		key_close(cub);
 	}
 }
@@ -31,7 +32,7 @@ void			bmp(t_cub3d *cub, int ac, char **av)
 void			bmp_filling(t_cub3d *cub, t_rgb *fc)
 {
 	cub->abrv = cub->ray + cub->img.h * cub->res.w;
-	if (cub->save == 1)
+	if (cub->ac == 3)
 	{
 		cub->image[(cub->abrv) * 3 + 2] = (char)fc->r;
 		cub->image[(cub->abrv) * 3 + 1] = (char)fc->g;

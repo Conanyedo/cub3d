@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 13:26:43 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/24 12:42:10 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 10:47:48 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	init(t_cub3d *cub)
 	cub->rep.c = 0;
 	cub->sprite_num = 0;
 	cub->sprite_n = 0;
-	cub->save = 1;
 	cub->half_height = 0;
 	cub->view = 10;
 }

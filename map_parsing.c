@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 08:33:16 by root              #+#    #+#             */
-/*   Updated: 2020/11/25 09:48:10 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 11:00:51 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ void	map(t_cub3d *cub)
 		cub->parse.y++;
 	}
 	cub->parse.x++;
-	if (cub->parse.x == 1)
-		printf("%s\n", cub->map[0]);
 }
 
 void	push(t_cub3d *cub)
@@ -70,8 +68,6 @@ void	push(t_cub3d *cub)
 	int		i;
 
 	i = 0;
-	if (cub->parse.x == 1)
-		printf("%s\n", cub->map[0]);
 	count = 0;
 	while (cub->map[count])
 		count++;
@@ -79,12 +75,15 @@ void	push(t_cub3d *cub)
 	while (i < count)
 	{
 		cub->tmp[i] = ft_strdup(cub->map[i]);
+		free(cub->map[i]);
 		i++;
 	}
 	cub->tmp[i] = ft_strdup(cub->parse.line);
 	cub->tmp[i + 1] = NULL;
+	free(cub->parse.line);
 	cub->map = cub->tmp;
-	// ft_free(cub->tmp);
+	// cub->tmp = NULL;
+	// free(cub->tmp);
 }
 
 void	space(t_cub3d *cub)

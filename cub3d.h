@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:47:27 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/24 12:50:58 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 10:47:56 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,9 +146,9 @@ typedef struct	s_cub3d
 	int			half_height;
 	char		**mini_map;
 	char		*image;
-	int			save;
 	int			color;
 	int			len;
+	int			ac;
 	int			bmp_pos;
 	int			abrv;
 	int			keyboard[300];

@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 12:52:06 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/20 13:44:16 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 10:41:02 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	wallrendering(t_cub3d *cub)
 		cub->color = cub->txt[1].img_data[cub->tex_x + cub->tex_y *
 			cub->txt[1].w];
 	cub->img.img_data[cub->img.h * cub->res.w + cub->ray] = cub->color;
-	if (cub->save == 1)
+	if (cub->ac == 3)
 	{
 		cub->image[(cub->ray + (cub->drawend - cub->bmp_pos) * cub->res.w)
 			* 3 + 2] = cub->color >> 16;

@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:08:52 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 09:41:53 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 10:21:43 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	exist(t_cub3d *cub)
 		cub->map = (char**)malloc(2 * sizeof(char*));
 		cub->map[0] = cub->parse.line;
 		cub->map[1] = NULL;
-		printf("|%s|\n|%s|\n", cub->map[0] , cub->parse.line);
 	}
 	else
 		push(cub);

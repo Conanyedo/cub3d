@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 13:37:19 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/17 12:25:20 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 10:41:26 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	sprite_image(t_cub3d *cub)
 	{
 		cub->img.img_data[cub->spriteline * cub->res.w + cub->drawstartx] =
 			cub->txt[4].img_data[cub->tex_x + cub->tex_y * cub->txt[4].w];
-		if (cub->save == 1)
+		if (cub->ac == 3)
 		{
 			cub->abrv = ((cub->drawendy - cub->bmp_pos) * cub->res.w +
 				cub->drawstartx);

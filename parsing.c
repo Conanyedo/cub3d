@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:01:50 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/24 12:43:09 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 10:17:38 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	resolution(t_cub3d *cub)
 	cub->res.h = cub->res.h < 360 ? 360 : cub->res.h;
 	ft_free(cub->parse.splitted);
 	cub->rep.res = 1;
+	free(cub->parse.line);
 }
 
 void	fc_color(t_rgb *fc, t_parse *parse, int *rep, t_cub3d *cub)
@@ -47,6 +48,7 @@ void	fc_color(t_rgb *fc, t_parse *parse, int *rep, t_cub3d *cub)
 	ft_free(parse->colors);
 	range(fc, cub);
 	*rep = 1;
+	free(cub->parse.line);
 }
 
 void	fc(t_cub3d *cub)
@@ -115,4 +117,5 @@ void	identifier(t_cub3d *cub)
 		path(&cub->path.we, cub, &cub->fd.we, &cub->rep.we);
 	else if (*cub->parse.line == 'E' && *(cub->parse.line + 1) == 'A')
 		path(&cub->path.ea, cub, &cub->fd.ea, &cub->rep.ea);
+	free(cub->parse.line);
 }

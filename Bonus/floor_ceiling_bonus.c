@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 10:55:37 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/23 17:45:03 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/25 10:49:29 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	bmp_fc(t_cub3d *cub, int y, int x)
 {
 	cub->abrv = x + (cub->res.h - y) * cub->res.w;
-	if (cub->save == 1)
+	if (cub->ac == 3)
 	{
 		cub->image[(cub->abrv) * 3 + 2] = cub->fc.color >> 16;
 		cub->image[(cub->abrv) * 3 + 1] = cub->fc.color >> 8;
