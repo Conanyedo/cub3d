@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 13:39:49 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/23 16:39:10 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/26 11:52:35 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ void	map_errors(t_cub3d *cub)
 	while (++i < cub->parse.x)
 	{
 		cub->parse.y = 0;
+		if (cub->map[i][0] == '\0')
+			error_msg_free("ERROR\nEmpty line\n", cub);
 		cub->len = line_lenth(cub, i);
 		while (cub->map[i][cub->parse.y])
 		{
 			map_check_next(cub, i);
-			if (cub->map[i][cub->parse.y] == '1')
-				cub->parse.y++;
-			else if (character(cub, i) == 3)
+			if (character(cub, i) == 3)
 				spriteposition(cub, i);
 			else
 				cub->parse.y++;

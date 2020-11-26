@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:01:50 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/26 09:10:54 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/26 12:04:23 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ void	resolution(t_cub3d *cub)
 		error_free("ERROR\nR must have only 2 param", cub, cub->parse.splitted);
 	checker(cub->parse.splitted, cub, 1);
 	cub->res.w = ft_atoi(cub->parse.splitted[1]);
+	cub->res.w = (cub->res.w < 0) ? 2560 : cub->res.w;
 	cub->res.w = (cub->res.w > 2560) ? 2560 : cub->res.w;
 	cub->res.h = ft_atoi(cub->parse.splitted[2]);
+	cub->res.h = (cub->res.h < 0) ? 1440 : cub->res.h;
 	cub->res.h = (cub->res.h > 1440) ? 1440 : cub->res.h;
 	ft_free(cub->parse.splitted);
 	cub->rep.res = 1;
@@ -95,9 +97,7 @@ void	path(char **path, t_cub3d *cub, int *fd, int *rep)
 		error_free("Error\nInvalid indentifier\n", cub, cub->parse.splitted);
 	*path = ft_strdup(cub->parse.splitted[1]);
 	ft_free(cub->parse.splitted);
-	*fd = open(*path, O_RDONLY);
-	if (*fd == -1)
-		error_msg_free("Error\nPath not found\n", cub);
+	ext_error(*path, ".xpm", fd);
 	*rep = 1;
 }
 

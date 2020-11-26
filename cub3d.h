@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:47:27 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/26 09:58:07 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/26 10:40:56 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct	s_mlx
 
 typedef	struct	s_fd
 {
-	int		lines;
+	int		file;
 	int		no;
 	int		so;
 	int		we;
@@ -186,7 +186,7 @@ typedef struct	s_cub3d
 }				t_cub3d;
 
 void			init(t_cub3d *cub);
-void			arg_error(t_cub3d *cub, char **av, int ac);
+void			ext_error(char *av, char *ext, int *fd);
 void			ft_free(char **arr);
 void			checker(char **s, t_cub3d *cub, int i);
 void			range(t_rgb *rgb, t_cub3d *cub);

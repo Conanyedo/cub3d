@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 13:37:19 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 10:49:37 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/26 11:52:23 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ void	spriteposition(t_cub3d *cub, int x)
 {
 	cub->sprite[cub->sprite_n].x = x + 0.5;
 	cub->sprite[cub->sprite_n].y = cub->parse.y + 0.5;
-	if (cub->map[x][cub->parse.y] == '2')
-		cub->sprite[cub->sprite_n].item = 's';
-	else if (cub->map[x][cub->parse.y] == '3')
-		cub->sprite[cub->sprite_n].item = 't';
-	else if (cub->map[x][cub->parse.y] == '4')
-		cub->sprite[cub->sprite_n].item = 'b';
 	cub->sprite_n++;
 	cub->parse.y++;
 }
@@ -103,20 +97,17 @@ void	sprite_image(t_cub3d *cub)
 	cub->d = (cub->spriteline) * 256 - cub->res.h * 128 +
 		cub->spriteheight * 128;
 	cub->tex_y = ((cub->d * cub->texheight) / cub->spriteheight) / 256;
-	if (cub->sprite[cub->sprite_n].item == 's')
+	if (cub->txt[4].img_data[cub->tex_x + cub->tex_y * cub->txt[4].w])
 	{
-		if (cub->txt[4].img_data[cub->tex_x + cub->tex_y * cub->txt[4].w])
+		cub->color = cub->txt[4].img_data[cub->tex_x +
+			cub->tex_y * cub->txt[4].w];
+		cub->img.img_data[cub->spriteline * cub->res.w + cub->drawstartx] =
+			cub->color;
+		if (cub->ac == 3)
 		{
-			cub->color = cub->txt[4].img_data[cub->tex_x +
-				cub->tex_y * cub->txt[4].w];
-			cub->img.img_data[cub->spriteline * cub->res.w + cub->drawstartx] =
-				cub->color;
-			if (cub->ac == 3)
-			{
-				cub->abrv = ((cub->drawendy - cub->bmp_pos) * cub->res.w +
-					cub->drawstartx);
-				bmp_filling(cub);
-			}
+			cub->abrv = ((cub->drawendy - cub->bmp_pos) * cub->res.w +
+				cub->drawstartx);
+			bmp_filling(cub);
 		}
 	}
 	cub->bmp_pos++;

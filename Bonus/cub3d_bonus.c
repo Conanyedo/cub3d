@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 00:30:45 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/26 09:48:49 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/26 11:53:12 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	parsing(t_cub3d *cub)
 	cub->parse.r = 1;
 	while (cub->parse.r == 1)
 	{
-		cub->parse.r = get_next_line(cub->fd.lines, &cub->parse.line);
+		cub->parse.r = get_next_line(cub->fd.file, &cub->parse.line);
 		if (*cub->parse.line == 'R')
 			resolution(cub);
 		else if (*cub->parse.line == 'F' || *cub->parse.line == 'C')
@@ -87,7 +87,8 @@ void	parsing(t_cub3d *cub)
 			*cub->parse.line == 'W' || *cub->parse.line == 'E')
 			identifier(cub);
 		else if (*cub->parse.line == ' ' || *cub->parse.line == '1' ||
-			*cub->parse.line == '0')
+			*cub->parse.line == '0' || (!*cub->parse.line &&
+			cub->parse.x > 0))
 			map(cub);
 		else if (*cub->parse.line)
 			error_msg_free("Error\nWrong info\n", cub);
@@ -107,7 +108,8 @@ int		main(int ac, char **av)
 
 	if (ac >= 2 && ac <= 3)
 	{
-		arg_error(&cub, av, ac);
+		cub.ac = ac;
+		ext_error(av[1], ".cub", &cub.fd.file);
 		init(&cub);
 		parsing(&cub);
 		texture(&cub);

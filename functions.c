@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 12:52:06 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/26 10:00:29 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/26 11:49:34 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		key_close(t_cub3d *cub)
 
 void	if_sprite(t_cub3d *cub)
 {
+	cub->parse.line = NULL;
 	if (cub->sprite_num)
 	{
 		cub->sprite_buf = (double *)malloc((cub->res.w + 1) * sizeof(double));
