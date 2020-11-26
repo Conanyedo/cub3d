@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:47:27 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 13:50:25 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/26 09:08:05 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,6 +280,7 @@ typedef struct	s_cub3d
 }				t_cub3d;
 
 void			init(t_cub3d *cub);
+void			arg_error(t_cub3d *cub, char **av, int ac);
 void			init_mlx(t_cub3d *cub);
 void			ft_free(char **arr);
 void			checker(char **s, t_cub3d *cub, int i);
@@ -288,6 +289,7 @@ int				key_pressed(int key, t_cub3d *cub);
 int				key_released(int key, t_cub3d *cub);
 int				key_close(t_cub3d *cub);
 void			resolution(t_cub3d *cub);
+int				min_res(t_cub3d *cub);
 void			identifier(t_cub3d *cub);
 void			fc(t_cub3d *cub);
 void			sprit(t_cub3d *cub);
@@ -301,7 +303,6 @@ void			error_msg_free(char *s, t_cub3d *cub);
 void			error_free(char *s, t_cub3d *cub, char **tofree);
 void			error_msg(char *s);
 void			free_path(t_cub3d *cub);
-void			free_all(t_cub3d *cub);
 void			fc_color(t_rgb *fc, t_parse *parse, int *rep, t_cub3d *cub);
 void			fc_checker(t_parse *parse, t_cub3d *cub);
 void			path(char **path, t_cub3d *cub, int *fd, int *rep);

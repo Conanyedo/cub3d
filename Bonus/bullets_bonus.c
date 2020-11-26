@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 11:54:03 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 13:51:28 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/26 08:22:54 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,39 +39,35 @@ void	bullet_color(t_cub3d *cub, int i, int j)
 
 void	complete_bullet(t_cub3d *cub)
 {
-	cub->bullets[10] = "3324422223330";
-	cub->bullets[11] = "3324422223330";
-	cub->bullets[12] = "3324422223330";
-	cub->bullets[13] = "3324422223330";
-	cub->bullets[14] = "3354455525330";
-	cub->bullets[15] = "3324422223330";
-	cub->bullets[16] = "3324422223330";
-	cub->bullets[17] = "0111111111100";
-	cub->bullets[18] = "3324422223330";
-	cub->bullets[19] = "3333333333330";
-	cub->bullets[20] = "0121000012100";
-	cub->bullets[21] = "0010000001000";
+	cub->bullets[10] = ft_strdup("3324422223330");
+	cub->bullets[11] = ft_strdup("3324422223330");
+	cub->bullets[12] = ft_strdup("3324422223330");
+	cub->bullets[13] = ft_strdup("3324422223330");
+	cub->bullets[14] = ft_strdup("3354455525330");
+	cub->bullets[15] = ft_strdup("3324422223330");
+	cub->bullets[16] = ft_strdup("3324422223330");
+	cub->bullets[17] = ft_strdup("0111111111100");
+	cub->bullets[18] = ft_strdup("3324422223330");
+	cub->bullets[19] = ft_strdup("3333333333330");
+	cub->bullets[20] = ft_strdup("0121000012100");
+	cub->bullets[21] = ft_strdup("0010000001000");
 }
 
 void	create_bullet(t_cub3d *cub, int i)
 {
+	i = 0;
 	cub->bullets = (char **)malloc(sizeof(char *) * 22 + 1);
 	cub->bullets[22] = NULL;
-	while (cub->bullets[++i])
-	{
-		cub->bullets[i] = (char *)malloc(sizeof(char) * 13 + 1);
-		ft_memset(cub->bullets[i], 0, 13);
-	}
-	cub->bullets[0] = "0000666600000";
-	cub->bullets[1] = "0006666660000";
-	cub->bullets[2] = "0066978866000";
-	cub->bullets[3] = "0667978886600";
-	cub->bullets[4] = "0666766886600";
-	cub->bullets[5] = "6679766688660";
-	cub->bullets[6] = "6679766688660";
-	cub->bullets[7] = "6667766886660";
-	cub->bullets[8] = "0111111111100";
-	cub->bullets[9] = "3324422223330";
+	cub->bullets[0] = ft_strdup("0000666600000");
+	cub->bullets[1] = ft_strdup("0006666660000");
+	cub->bullets[2] = ft_strdup("0066978866000");
+	cub->bullets[3] = ft_strdup("0667978886600");
+	cub->bullets[4] = ft_strdup("0666766886600");
+	cub->bullets[5] = ft_strdup("6679766688660");
+	cub->bullets[6] = ft_strdup("6679766688660");
+	cub->bullets[7] = ft_strdup("6667766886660");
+	cub->bullets[8] = ft_strdup("0111111111100");
+	cub->bullets[9] = ft_strdup("3324422223330");
 	complete_bullet(cub);
 }
 

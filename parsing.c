@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:01:50 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 13:00:50 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/26 09:10:54 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@ void	resolution(t_cub3d *cub)
 	checker(cub->parse.splitted, cub, 1);
 	cub->res.w = ft_atoi(cub->parse.splitted[1]);
 	cub->res.w = (cub->res.w > 2560) ? 2560 : cub->res.w;
-	cub->res.w = cub->res.w < 640 ? 640 : cub->res.w;
 	cub->res.h = ft_atoi(cub->parse.splitted[2]);
 	cub->res.h = (cub->res.h > 1440) ? 1440 : cub->res.h;
-	cub->res.h = cub->res.h < 360 ? 360 : cub->res.h;
 	ft_free(cub->parse.splitted);
 	cub->rep.res = 1;
 }

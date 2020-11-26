@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 10:55:37 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 10:49:29 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/26 09:19:14 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	fc_calc(t_cub3d *cub, int y)
 	cub->fc.posz = 0.5 * cub->res.h;
 	cub->fc.rowdistance = cub->fc.posz / cub->fc.p;
 	cub->fc.floorstepx = cub->fc.rowdistance *
-		(cub->fc.raydirx1 - cub->fc.raydirx0) / cub->res.h;
+		(cub->fc.raydirx1 - cub->fc.raydirx0) / cub->res.w;
 	cub->fc.floorstepy = cub->fc.rowdistance *
-		(cub->fc.raydiry1 - cub->fc.raydiry0) / cub->res.h;
+		(cub->fc.raydiry1 - cub->fc.raydiry0) / cub->res.w;
 	cub->fc.floorx = cub->posx + cub->fc.rowdistance *
 		cub->fc.raydirx0;
 	cub->fc.floory = cub->posy + cub->fc.rowdistance *
@@ -58,12 +58,12 @@ void	floor_ceiling(t_cub3d *cub)
 	int		y;
 	int		x;
 
-	y = -1;
-	while (++y < cub->res.h)
+	y = 0;
+	while (y < cub->res.h)
 	{
 		fc_calc(cub, y);
-		x = -1;
-		while (++x < cub->res.w)
+		x = 0;
+		while (x < cub->res.w)
 		{
 			cub->fc.cellx = (int)(cub->fc.floorx);
 			cub->fc.celly = (int)(cub->fc.floory);
@@ -76,6 +76,8 @@ void	floor_ceiling(t_cub3d *cub)
 			fc_txt(cub, y);
 			cub->img.img_data[y * cub->res.w + x] = cub->fc.color;
 			bmp_fc(cub, y, x);
+			x++;
 		}
+		y++;
 	}
 }

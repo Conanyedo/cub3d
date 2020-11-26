@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 00:30:45 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 14:42:41 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/26 10:01:45 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	draw(t_cub3d *cub)
 	}
 	if (cub->sprite_num)
 		sprite(cub);
-	if (cub->mini.show)
-		minimap(cub);
 	mlx_put_image_to_window(cub->mlx.p, cub->mlx.w, cub->img.img_ptr, 0, 0);
 }
 
@@ -46,19 +44,6 @@ int		deal_key(t_cub3d *cub)
 	look(cub);
 	if (cub->keyboard[53])
 		key_close(cub);
-	if (cub->keyboard[46])
-	{
-		cub->mini.show = cub->mini.show == 1 ? 0 : 1;
-		cub->keyboard[46] = 0;
-	}
-	if (cub->keyboard[126])
-	{
-		cub->half_height += cub->view;
-	}
-	if (cub->keyboard[125])
-	{
-		cub->half_height -= cub->view;
-	}
 	draw(cub);
 	return (0);
 }
@@ -117,7 +102,6 @@ void	parsing(t_cub3d *cub)
 		map_errors(cub);
 	else
 		error_msg_free("ERROR\nMap not found", cub);
-	create_mini(cub);
 }
 
 int		main(int ac, char **av)
@@ -126,10 +110,7 @@ int		main(int ac, char **av)
 
 	if (ac >= 2 && ac <= 3)
 	{
-		cub.ac = ac;
-		cub.fd.lines = open(av[1], O_RDONLY);
-		if (cub.fd.lines < 0)
-			error_msg("Error\nInvalid file");
+		arg_error(&cub, av, ac);
 		init(&cub);
 		parsing(&cub);
 		texture(&cub);
@@ -140,7 +121,6 @@ int		main(int ac, char **av)
 		mlx_hook(cub.mlx.w, 17, 0, key_close, &cub);
 		mlx_loop_hook(cub.mlx.p, deal_key, &cub);
 		mlx_loop(cub.mlx.p);
-		// free_all(&cub);
 	}
 	else
 		error_msg("Error\nInvalid params");

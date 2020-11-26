@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 14:31:20 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 13:56:24 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/26 09:12:04 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,12 @@ void	resize_map(t_cub3d *cub)
 	resize_rowmap(cub);
 }
 
-void	free_all(t_cub3d *cub)
+int		min_res(t_cub3d *cub)
 {
-	ft_free(cub->map);
-	ft_free(cub->tmp);
-	ft_free(cub->mini_map);
-	ft_free(cub->heart);
-	ft_free(cub->weapons);
-	ft_free(cub->shot);
-	ft_free(cub->bullets);
-	free(cub->sprite_buf);
-	free(cub->sprite);
+	int		res;
+
+	res = 0;
+	if (cub->res.w < 640 || cub->res.h < 360)
+		res = 1;
+	return (res);
 }

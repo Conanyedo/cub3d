@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:47:27 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 13:38:43 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/26 09:58:07 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,24 +85,6 @@ typedef struct	s_img
 	int		h;
 }				t_img;
 
-typedef struct	s_scale
-{
-	int		x;
-	int		y;
-}				t_scale;
-
-typedef struct	s_mini
-{
-	int		x;
-	int		y;
-	int		len;
-	int		row;
-	int		mini_len;
-	int		mini_row;
-	t_scale	scale;
-	int		show;
-}				t_mini;
-
 typedef struct	s_bmp
 {
 	int		pad;
@@ -140,14 +122,9 @@ typedef struct	s_cub3d
 	t_fd		fd;
 	t_img		txt[5];
 	t_sprite	*sprite;
-	t_mini		mini;
 
-	int			view;
-	int			half_height;
-	char		**mini_map;
 	char		*image;
 	int			color;
-	int			len;
 	int			ac;
 	int			bmp_pos;
 	int			abrv;
@@ -209,6 +186,7 @@ typedef struct	s_cub3d
 }				t_cub3d;
 
 void			init(t_cub3d *cub);
+void			arg_error(t_cub3d *cub, char **av, int ac);
 void			ft_free(char **arr);
 void			checker(char **s, t_cub3d *cub, int i);
 void			range(t_rgb *rgb, t_cub3d *cub);
@@ -217,6 +195,7 @@ int				key_released(int key, t_cub3d *cub);
 int				key_close(t_cub3d *cub);
 int				create_rgb(t_rgb *rgb);
 void			resolution(t_cub3d *cub);
+int				min_res(t_cub3d *cub);
 void			identifier(t_cub3d *cub);
 void			fc(t_cub3d *cub);
 void			sprit(t_cub3d *cub);
@@ -230,7 +209,6 @@ void			error_msg_free(char *s, t_cub3d *cub);
 void			error_free(char *s, t_cub3d *cub, char **tofree);
 void			error_msg(char *s);
 void			free_path(t_cub3d *cub);
-void			free_all(t_cub3d *cub);
 void			fc_color(t_rgb *fc, t_parse *parse, int *rep, t_cub3d *cub);
 void			fc_checker(t_parse *parse, t_cub3d *cub);
 void			path(char **path, t_cub3d *cub, int *fd, int *rep);
@@ -262,9 +240,5 @@ void			bmp(t_cub3d *cub, int ac, char **av);
 void			bmp_save(t_cub3d *cub);
 void			bmp_filling(t_cub3d *cub, t_rgb *fc);
 int				line_lenth(t_cub3d *cub, int i);
-void			minimap(t_cub3d *cub);
-void			create_mini(t_cub3d *cub);
-void			resize_map(t_cub3d *cub);
-void			create_pixel(t_cub3d *cub, int x, int y, t_scale scale);
 
 #endif

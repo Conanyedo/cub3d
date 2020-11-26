@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 22:13:28 by root              #+#    #+#             */
-/*   Updated: 2020/11/25 13:51:12 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/26 08:23:00 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,38 +61,34 @@ void	weapon_color(t_cub3d *cub, int i, int j)
 
 void	complete_weapon(t_cub3d *cub)
 {
-	cub->weapons[10] = "000085*1555-*-670000";
-	cub->weapons[11] = "000899*1555-*7660000";
-	cub->weapons[12] = "00089+7----**7667000";
-	cub->weapons[13] = "00089++6777688666000";
-	cub->weapons[14] = "00899++++99886677000";
-	cub->weapons[15] = "008989+++99886677000";
-	cub->weapons[16] = "00898699999888667000";
-	cub->weapons[17] = "00899889998888667000";
-	cub->weapons[18] = "00111286888881113300";
-	cub->weapons[19] = "01221344667712211340";
-	cub->weapons[20] = "12211334554312211134";
+	cub->weapons[10] = ft_strdup("000085*1555-*-670000");
+	cub->weapons[11] = ft_strdup("000899*1555-*7660000");
+	cub->weapons[12] = ft_strdup("00089+7----**7667000");
+	cub->weapons[13] = ft_strdup("00089++6777688666000");
+	cub->weapons[14] = ft_strdup("00899++++99886677000");
+	cub->weapons[15] = ft_strdup("008989+++99886677000");
+	cub->weapons[16] = ft_strdup("00898699999888667000");
+	cub->weapons[17] = ft_strdup("00899889998888667000");
+	cub->weapons[18] = ft_strdup("00111286888881113300");
+	cub->weapons[19] = ft_strdup("01221344667712211340");
+	cub->weapons[20] = ft_strdup("12211334554312211134");
 }
 
 void	create_weapon(t_cub3d *cub, int i)
 {
+	i = 0;
 	cub->weapons = (char **)malloc(sizeof(char *) * 21 + 1);
 	cub->weapons[21] = NULL;
-	while (cub->weapons[++i])
-	{
-		cub->weapons[i] = (char *)malloc(sizeof(char) * 20 + 1);
-		ft_memset(cub->weapons[i], 0, 20);
-	}
-	cub->weapons[0] = "000000000-0000000000";
-	cub->weapons[1] = "00000000434000000000";
-	cub->weapons[2] = "00000004121400000000";
-	cub->weapons[3] = "00000004121400000000";
-	cub->weapons[4] = "00000011414110000000";
-	cub->weapons[5] = "00000512555434000000";
-	cub->weapons[6] = "00000512434414000000";
-	cub->weapons[7] = "00000512111315000000";
-	cub->weapons[8] = "00000541222435000000";
-	cub->weapons[9] = "000005*1444-*-600000";
+	cub->weapons[0] = ft_strdup("000000000-0000000000");
+	cub->weapons[1] = ft_strdup("00000000434000000000");
+	cub->weapons[2] = ft_strdup("00000004121400000000");
+	cub->weapons[3] = ft_strdup("00000004121400000000");
+	cub->weapons[4] = ft_strdup("00000011414110000000");
+	cub->weapons[5] = ft_strdup("00000512555434000000");
+	cub->weapons[6] = ft_strdup("00000512434414000000");
+	cub->weapons[7] = ft_strdup("00000512111315000000");
+	cub->weapons[8] = ft_strdup("00000541222435000000");
+	cub->weapons[9] = ft_strdup("000005*1444-*-600000");
 	complete_weapon(cub);
 }
 

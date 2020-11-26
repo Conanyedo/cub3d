@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 12:21:09 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/24 12:34:39 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/26 08:57:43 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,15 @@ int		character(t_cub3d *cub, int x)
 	else if (cub->map[x][cub->parse.y] == '2')
 		found = 3;
 	return (found);
+}
+
+void	arg_error(t_cub3d *cub, char **av, int ac)
+{
+	int		len;
+
+	cub->ac = ac;
+	cub->fd.lines = open(av[1], O_RDONLY);
+	len = ft_strlen(av[1]) - 4;
+	if (cub->fd.lines < 0 || ft_strncmp(av[1] + len, ".cub", 4))
+		error_msg("Error\nInvalid file");
 }

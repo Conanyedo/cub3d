@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 13:32:21 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 14:31:34 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/26 10:01:02 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 void	bonus(t_cub3d *cub)
 {
-	(void)cub;
-	// if (cub->mini.show)
-	// 	minimap(cub);
-	// life_bar(cub);
-	// if (cub->weapon.fire)
-	// 	fire(cub);
-	// else
-	// 	weapon(cub);
-	// bullets(cub);
+	if (!min_res(cub))
+	{
+		if (cub->mini.show)
+			minimap(cub);
+		life_bar(cub);
+		if (cub->weapon.fire)
+			fire(cub);
+		else
+			weapon(cub);
+		bullets(cub);
+	}
 }
 
 void	fire_bullets(t_cub3d *cub)
@@ -46,16 +48,19 @@ void	fire_bullets(t_cub3d *cub)
 
 void	bonus_keys(t_cub3d *cub)
 {
-	cub->weapon.fire = 0;
-	if (cub->keyboard[46])
+	if (!min_res(cub))
 	{
-		cub->mini.show = cub->mini.show == 1 ? 0 : 1;
-		cub->keyboard[46] = 0;
-	}
-	fire_bullets(cub);
-	if (cub->life.hearts == 0)
-	{
-		ft_putstr_fd("GAME OVER\n", 2);
-		key_close(cub);
+		cub->weapon.fire = 0;
+		if (cub->keyboard[46])
+		{
+			cub->mini.show = cub->mini.show == 1 ? 0 : 1;
+			cub->keyboard[46] = 0;
+		}
+		fire_bullets(cub);
+		if (cub->life.hearts == 0)
+		{
+			ft_putstr_fd("GAME OVER!\n", 2);
+			key_close(cub);
+		}
 	}
 }

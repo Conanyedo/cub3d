@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:08:52 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 13:35:44 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/26 08:48:12 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	error_msg_free(char *s, t_cub3d *cub)
 	free(cub->path.ea);
 	free(cub->path.we);
 	free(cub->path.s);
+	free(cub->image);
 	if (cub->parse.x > 0)
 		ft_free(cub->map);
 	ft_putstr_fd(s, 2);
@@ -56,6 +57,7 @@ void	error_free(char *s, t_cub3d *cub, char **tofree)
 	free(cub->path.ea);
 	free(cub->path.we);
 	free(cub->path.s);
+	free(cub->image);
 	ft_putstr_fd(s, 2);
 	exit(1);
 }

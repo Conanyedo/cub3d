@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 09:11:45 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/25 13:50:43 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/26 08:22:42 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,30 +60,26 @@ void	lifebar_color(t_cub3d *cub, int i, int j)
 
 void	create_heart(t_cub3d *cub, int i)
 {
+	i = 0;
 	cub->heart = (char **)malloc(sizeof(char *) * 17 + 1);
 	cub->heart[17] = NULL;
-	while (cub->heart[++i])
-	{
-		cub->heart[i] = (char *)malloc(sizeof(char) * 18 + 1);
-		ft_memset(cub->heart[i], 0, 18);
-	}
-	cub->heart[0] = "001111100011111000";
-	cub->heart[1] = "014555510122222100";
-	cub->heart[2] = "144455551552222210";
-	cub->heart[3] = "144445555555662210";
-	cub->heart[4] = "134444555555562210";
-	cub->heart[5] = "133444455555552210";
-	cub->heart[6] = "133344445555555210";
-	cub->heart[7] = "113334444555555110";
-	cub->heart[8] = "111333444455551110";
-	cub->heart[9] = "011133344445511100";
-	cub->heart[10] = "001113334444111000";
-	cub->heart[11] = "000111333441110000";
-	cub->heart[12] = "000011133311100000";
-	cub->heart[13] = "000001113111000000";
-	cub->heart[14] = "000000111110000000";
-	cub->heart[15] = "000000011100000000";
-	cub->heart[16] = "000000001000000000";
+	cub->heart[0] = ft_strdup("001111100011111000");
+	cub->heart[1] = ft_strdup("014555510122222100");
+	cub->heart[2] = ft_strdup("144455551552222210");
+	cub->heart[3] = ft_strdup("144445555555662210");
+	cub->heart[4] = ft_strdup("134444555555562210");
+	cub->heart[5] = ft_strdup("133444455555552210");
+	cub->heart[6] = ft_strdup("133344445555555210");
+	cub->heart[7] = ft_strdup("113334444555555110");
+	cub->heart[8] = ft_strdup("111333444455551110");
+	cub->heart[9] = ft_strdup("011133344445511100");
+	cub->heart[10] = ft_strdup("001113334444111000");
+	cub->heart[11] = ft_strdup("000111333441110000");
+	cub->heart[12] = ft_strdup("000011133311100000");
+	cub->heart[13] = ft_strdup("000001113111000000");
+	cub->heart[14] = ft_strdup("000000111110000000");
+	cub->heart[15] = ft_strdup("000000011100000000");
+	cub->heart[16] = ft_strdup("000000001000000000");
 }
 
 void	render_heart(t_cub3d *cub, int end, int j)
