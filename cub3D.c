@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 00:30:45 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/26 11:42:47 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/30 09:50:17 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		deal_key(t_cub3d *cub)
 void	texture(t_cub3d *cub)
 {
 	cub->mlx.p = mlx_init();
-	cub->mlx.w = mlx_new_window(cub->mlx.p, cub->res.w, cub->res.h, "cub3d");
+	cub->mlx.w = mlx_new_window(cub->mlx.p, cub->res.w, cub->res.h, "cub3D");
 	cub->txt[0].img_ptr = mlx_xpm_file_to_image(cub->mlx.p, cub->path.no,
 		&cub->txt[0].w, &cub->txt[0].h);
 	cub->txt[0].img_data = (int*)mlx_get_data_addr(cub->txt[0].img_ptr,
@@ -114,6 +114,7 @@ int		main(int ac, char **av)
 		cub.ac = ac;
 		ext_error(av[1], ".cub", &cub.fd.file);
 		init(&cub);
+		mlx_get_screen_size(cub.mlx.p, &cub.res.max_w, &cub.res.max_h);
 		parsing(&cub);
 		texture(&cub);
 		draw(&cub);

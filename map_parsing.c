@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 08:33:16 by root              #+#    #+#             */
-/*   Updated: 2020/11/26 11:47:07 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/26 16:18:11 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	map_checker(t_cub3d *cub)
 
 void	map(t_cub3d *cub)
 {
+	if (!*cub->parse.line)
+		error_msg_free("ERROR\nEmpty line\n", cub);
 	exist(cub);
 	map_checker(cub);
 	cub->parse.y = 0;

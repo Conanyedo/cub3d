@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 12:52:06 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/26 11:53:26 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/26 14:15:33 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int		key_close(t_cub3d *cub)
 {
 	mlx_clear_window(cub->mlx.p, cub->mlx.w);
 	system("killall afplay");
-	system("rm -rf cub3d");
 	exit(0);
 	return (0);
 }
@@ -40,6 +39,13 @@ void	free_path(t_cub3d *cub)
 	free(cub->path.s);
 	free(cub->path.f);
 	free(cub->path.c);
+	cub->path.s = NULL;
+	cub->path.no = NULL;
+	cub->path.so = NULL;
+	cub->path.ea = NULL;
+	cub->path.we = NULL;
+	cub->path.f = NULL;
+	cub->path.c = NULL;
 }
 
 void	wallrendering(t_cub3d *cub)

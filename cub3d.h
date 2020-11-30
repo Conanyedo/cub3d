@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:47:27 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/26 10:40:56 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/30 09:49:55 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 # define CUB3D_H
 
 # include "mlx.h"
+# include "minilibx/mlx_42.h"
 # include "Utils/utils.h"
 # include <math.h>
 # include <fcntl.h>
-# include <stdio.h>
 
 typedef struct	s_resolution
 {
 	int		h;
 	int		w;
+	int		max_w;
+	int		max_h;
 }				t_res;
 
 typedef struct	s_mlx

@@ -6,11 +6,11 @@
 #    By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 15:10:16 by ybouddou          #+#    #+#              #
-#    Updated: 2020/11/26 09:55:06 by ybouddou         ###   ########.fr        #
+#    Updated: 2020/11/26 18:32:36 by ybouddou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = cub3D
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
@@ -34,8 +34,6 @@ SRC = Utils/ft_memset.c\
 	  spawning.c\
 	  sprite.c\
 	  bmp.c\
-	#   minimap.c\
-	#   resize_map.c\
 
 SRCb = Utils/ft_memset.c\
 	   Utils/ft_strncmp.c\
@@ -73,10 +71,10 @@ OBJb = $(SRCb:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) minilibx/libmlx.dylib -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 bonus: $(OBJb)
-	@$(CC) $(CFLAGS) $(OBJb) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJb) minilibx/libmlx.dylib -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $^ -o $@
