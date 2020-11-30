@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:16:51 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/30 09:43:32 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/30 12:48:42 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ void	hit(t_cub3d *cub)
 		{
 			cub->sidedisty += cub->deltadisty;
 			cub->mapy += cub->stepy;
-			cub->side = 1;
+			cub->side = 3;
 		}
 		if (cub->side == 0 && cub->raydirx > 0)
 			cub->side = 2;
-		else if (cub->side == 1 && cub->raydiry < 0)
-			cub->side = 3;
+		else if (cub->side == 3 && cub->raydiry < 0)
+			cub->side = 1;
 		if (cub->map[cub->mapx][cub->mapy] == '1')
 			cub->hit = 1;
 	}

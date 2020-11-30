@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 00:30:45 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/30 09:50:17 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/30 12:28:08 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ int		main(int ac, char **av)
 		cub.ac = ac;
 		ext_error(av[1], ".cub", &cub.fd.file);
 		init(&cub);
-		mlx_get_screen_size(cub.mlx.p, &cub.res.max_w, &cub.res.max_h);
 		parsing(&cub);
 		texture(&cub);
 		draw(&cub);

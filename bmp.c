@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 09:05:47 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/26 08:48:26 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/30 12:58:42 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void			bmp(t_cub3d *cub, int ac, char **av)
 {
 	if (ac == 3)
 	{
-		if (!ft_strncmp(av[2], "--save", ft_strlen(av[2])))
+		if (!ft_strncmp(av[2], "--save", ft_strlen("--save")))
 			bmp_save(cub);
-		else if (ft_strncmp(av[2], "--save", ft_strlen(av[2])))
+		else if (ft_strncmp(av[2], "--save", ft_strlen("--save")))
 			error_msg_free("Error\nInvalid param", cub);
 		free(cub->image);
 		key_close(cub);

@@ -6,7 +6,7 @@
 #    By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 15:10:16 by ybouddou          #+#    #+#              #
-#    Updated: 2020/11/26 18:32:36 by ybouddou         ###   ########.fr        #
+#    Updated: 2020/11/30 12:28:47 by ybouddou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,10 +71,10 @@ OBJb = $(SRCb:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) minilibx/libmlx.dylib -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 bonus: $(OBJb)
-	@$(CC) $(CFLAGS) $(OBJb) minilibx/libmlx.dylib -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJb) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $^ -o $@
