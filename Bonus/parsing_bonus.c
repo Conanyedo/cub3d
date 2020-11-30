@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:01:50 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/30 12:40:42 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/11/30 13:42:34 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	resolution(t_cub3d *cub)
 		error_free("ERROR\nR must have only 2 param", cub, cub->parse.splitted);
 	checker(cub->parse.splitted, cub, 1);
 	cub->res.w = ft_atoi(cub->parse.splitted[1]);
-	cub->res.w = (cub->res.w <= 0) ? 2560 : cub->res.w;
+	cub->res.w = (cub->res.w < 0) ? 2560 : cub->res.w;
 	cub->res.w = (cub->res.w > 2560) ? 2560 : cub->res.w;
 	cub->res.h = ft_atoi(cub->parse.splitted[2]);
-	cub->res.h = (cub->res.h <= 0) ? 1440 : cub->res.h;
+	cub->res.h = (cub->res.h < 0) ? 1440 : cub->res.h;
 	cub->res.h = (cub->res.h > 1440) ? 1440 : cub->res.h;
 	ft_free(cub->parse.splitted);
 	cub->rep.res = 1;
