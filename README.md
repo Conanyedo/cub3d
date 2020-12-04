@@ -14,7 +14,7 @@ To run it again without remaking, you can simply run the executable.
 ```bash
 ./Cub3D Bonus/map_bonus.cub
 ```
-![screen](/texture/screen.png?raw=true)
+![screen](/texture/screen_bonus.png?raw=true)
 
 ## Controls
 * You can move around the maze with W A S D.
