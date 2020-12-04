@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 13:26:43 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/30 09:43:03 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/12/02 17:41:32 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	fc_checker(t_parse *parse, t_cub3d *cub)
 	i = 0;
 	comma = 0;
 	if (parse->splitted[2])
-		error_free("Error\nAnother char found after F\n", cub, parse->splitted);
+		error_free("Error\nAnother arg after color\n", cub, parse->splitted);
 	while (parse->splitted[1][i])
 	{
 		if (parse->splitted[1][i] == ',')

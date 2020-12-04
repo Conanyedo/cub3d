@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 10:55:37 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/26 09:19:14 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/12/04 09:09:39 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,16 @@ void	fc_calc(t_cub3d *cub, int y)
 		cub->fc.raydiry0;
 }
 
-void	fc_txt(t_cub3d *cub, int y)
+void	fc_txt(t_cub3d *cub, int y, int x)
 {
-	if (y < cub->res.h / 2)
-		cub->fc.color = cub->txt[5].img_data[cub->texwidth *
-			cub->fc.ty + cub->fc.tx];
-	else
-		cub->fc.color = cub->txt[6].img_data[cub->texwidth *
-			cub->fc.ty + cub->fc.tx];
+	cub->fc.color = cub->txt[6].img_data[cub->texwidth *
+		cub->fc.ty + cub->fc.tx];
 	cub->fc.color = (cub->fc.color >> 1) & 8355711;
+	cub->img.img_data[y * cub->res.w + x] = cub->fc.color;
+	cub->fc.color = cub->txt[5].img_data[cub->texwidth *
+		cub->fc.ty + cub->fc.tx];
+	cub->fc.color = (cub->fc.color >> 1) & 8355711;
+	cub->img.img_data[(cub->res.h - y - 1) * cub->res.w + x] = cub->fc.color;
 }
 
 void	floor_ceiling(t_cub3d *cub)
@@ -73,8 +74,7 @@ void	floor_ceiling(t_cub3d *cub)
 				cub->fc.celly)) & (cub->texheight - 1);
 			cub->fc.floorx += cub->fc.floorstepx;
 			cub->fc.floory += cub->fc.floorstepy;
-			fc_txt(cub, y);
-			cub->img.img_data[y * cub->res.w + x] = cub->fc.color;
+			fc_txt(cub, y, x);
 			bmp_fc(cub, y, x);
 			x++;
 		}

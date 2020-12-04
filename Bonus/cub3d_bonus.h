@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:47:27 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/30 12:41:01 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/12/04 09:09:51 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -335,7 +335,7 @@ void			bmp_filling(t_cub3d *cub);
 void			bonus(t_cub3d *cub);
 void			floor_ceiling(t_cub3d *cub);
 void			fc_calc(t_cub3d *cub, int y);
-void			fc_txt(t_cub3d *cub, int y);
+void			fc_txt(t_cub3d *cub, int y, int x);
 void			create_pixel(t_cub3d *cub, int x, int y, t_scale scale);
 void			minimap(t_cub3d *cub);
 int				line_lenth(t_cub3d *cub, int i);

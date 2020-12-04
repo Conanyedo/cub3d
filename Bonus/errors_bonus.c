@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:08:52 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/26 08:50:03 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/12/04 09:22:07 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	error_msg_free(char *s, t_cub3d *cub)
 	if (cub->parse.x > 0)
 		ft_free(cub->map);
 	ft_putstr_fd(s, 2);
+	system("killall afplay");
 	exit(1);
 }
 

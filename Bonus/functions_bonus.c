@@ -6,7 +6,7 @@
 /*   By: ybouddou <ybouddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 12:52:06 by ybouddou          #+#    #+#             */
-/*   Updated: 2020/11/26 14:15:33 by ybouddou         ###   ########.fr       */
+/*   Updated: 2020/12/04 09:16:44 by ybouddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		key_close(t_cub3d *cub)
 {
 	mlx_clear_window(cub->mlx.p, cub->mlx.w);
 	system("killall afplay");
+	ft_putstr_fd("END OF GAME!\n", 2);
 	exit(0);
 	return (0);
 }
