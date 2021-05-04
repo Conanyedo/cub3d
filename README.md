@@ -2,19 +2,17 @@
 
 First-person 3D representation of a maze using raycasting, similar to Wolfenstein 3D (1992).
 
-## How to run it
+## Mandatory part
 
-Using make bonus will build the executable ./cub3D.
+The basic program that was required to pass. It only includes wall textures and a sprite ; no floor/ceiling textures, no weapons, no enemies, no game elements at all.
 
+- git clone the repository.
+- `cd` into the directory and run `make`.
+- run the executable `./cub3D` with the map as an argument.
 ```bash
-make bonus
+./cub3D map.cub
 ```
-To run it again without remaking, you can simply run the executable.
-
-```bash
-./Cub3D Bonus/map_bonus.cub
-```
-![screen](/texture/screen_bonus.png?raw=true)
+![screen](/texture/screen_mandatory.png?raw=true)
 
 ## Controls
 * You can move around the maze with W A S D.
@@ -25,20 +23,16 @@ To run it again without remaking, you can simply run the executable.
 
 * To exit the game, press ESC or click the red cross.
 
-## The mandatory part
-
-The basic program that was required to pass. It only includes wall textures and a sprite ; no floor/ceiling textures, no weapons, no enemies, no game elements at all.
-
-## How to run the mandatory part
+## How to run the bonus part
 
 Using make bonus will build the executable ./cub3D.
 
 ```bash
-make
+make bonus
 ```
-To run it again without remaking, you can simply run the executable.
-
+run the executable `./cub3D` with the bonus map as an argument.
 ```bash
-./Cub3D map.cub
+./Cub3D Bonus/map_bonus.cub
 ```
-![screen](/texture/screen_mandatory.png?raw=true)
+
+![screen](/texture/screen_bonus.png?raw=true)
