@@ -15,6 +15,7 @@ The basic program that was required to pass. It only includes wall textures and 
 ![screen](/texture/screen_mandatory.png?raw=true)
 
 ## Controls
+
 * You can move around the maze with W A S D.
 
 * You can also rotate the view with the directional arrows ← and →.
